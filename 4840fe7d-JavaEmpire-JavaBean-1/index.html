@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】Java 帝国之Java bean (上） | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513115&amp;amp;idx=1&amp;amp;sn=da30cf3d3f163d478748fcdf721b6414&amp;amp;scene=21#wechat_redirect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】Java 帝国之Java bean (上）">
+<meta property="og:url" content="http://nibnait.com/4840fe7d-JavaEmpire-JavaBean-1/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513115&amp;amp;idx=1&amp;amp;sn=da30cf3d3f163d478748fcdf721b6414&amp;amp;scene=21#wechat_redirect">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-06-27T16:52:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】Java 帝国之Java bean (上）">
+<meta name="twitter:description" content="原文地址：http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513115&amp;amp;idx=1&amp;amp;sn=da30cf3d3f163d478748fcdf721b6414&amp;amp;scene=21#wechat_redirect">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-4840fe7d-JavaEmpire-JavaBean-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/4840fe7d-JavaEmpire-JavaBean-1/" class="article-date">
+  <time datetime="2016-05-27T14:24:34.000Z" itemprop="datePublished">2016-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】Java 帝国之Java bean (上）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414&amp;scene=21#wechat_redirect0" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414&amp;scene=21#wechat_redirect</a></p>
+</blockquote>
+<a id="more"></a>
+<p>我一手创立的Java帝国刚刚成立不久，便受到巨大的打击， 我派出去占领桌面开发的部队几乎全军覆没。 </p>
+<p>情报说微软的Visual Basic 和Borland的Delphi最近在宣传什么组件化开发， 难道就是这东西把我们搞垮了？</p>
+<p>我赶紧买了一个Visual Basic 过来研究， 果然，这个家伙确实是方便， 最让我惊叹的是：它有一个可视化编辑器 ！ </p>
+<p>我只需要把一个组件(例如按钮)拖拽到可一个表单上,  设置一下属性 （颜色，字体）， 再添加一个事件（onClick）, 最后在onClick中写点代码就搞定了 ！</p>
+<p>不仅如此，我自己也可以把我的代码按规范包装成一个组件， 发布出去让别人使用。</p>
+<p>我看着手下给我买来的《程序员大本营》光盘， 里边竟然包含了好几千个这样的组件， 有数据库浏览组件， 计时器组件， 颜色选取组件， 甚至还有收发邮件的组件……</p>
+<p>天哪， 这以后开发桌面程序岂不太简单了 !</p>
+<p>怪不得我的Java 被打得满地找牙！</p>
+<p>我赶紧打电话给我的干将小码哥 ：　小码啊，　你赶紧看看这个Visual Basic 和Delphi , 给你7天时间， 我们Java 也得赶紧搞一套这样的东西出来。</p>
+<p>小吗毫不含糊， 三天就给我搞了一个东西出来： Java Bean API 规范 。</p>
+<p>我翻开一看， 哇塞， 长达114页 ， 于是问他：“这是什么东西？ 我要的可视化编辑器呢Visual Java 呢？ ”</p>
+<p>他说： “老大， 我们是个开源的社区， 得充分利用大家的力量， 所以我没有去做像VB和Delphi那样的东西， 相反，我定义了一套规范， 只要大家按照这个规范做， 谁都可以用java 做出像VB那样的可视化开发工具出来。”</p>
+<p>“那你说说这个java bean 到底是什么规范？”我问。</p>
+<p>“首先，一个java bean 其实就是一个普通的java 类， 但我们对这个类有些要求： </p>
+<ol>
+<li><p>这个类需要是public 的， 然后需要有个无参数的构造函数</p>
+</li>
+<li><p>这个类的属性应该是private 的， 通过setXXX()和getXXX()来访问</p>
+</li>
+<li><p>这个类需要能支持“事件”， 例如addXXXXListener(XXXEvent e),  事件可以是Click事件，Keyboard事件等等， 当然咱们也支持自定义的事件。 </p>
+</li>
+<li><p>我们得提供一个所谓的自省/反射机制， 这样能在运行时查看java bean 的各种信息“</p>
+</li>
+<li><p>这个类应该是可以序列化的， 即可以把bean的状态保存的硬盘上， 以便以后来恢复。 </p>
+</li>
+</ol>
+<p>“这些要求看起来也没啥啊，对程序员来说，不就是个普通的java 类吗？ 到底该怎么用？ ” </p>
+<p>“我们幻想一下，假设我们的Java bean 大行其道了， 有个用户在用一个Visual Java Builder  这样的可视化开发工具， 当他用这个工具创建应用的时候， 可以选择一个叫JButton的组件， 加到一个表单上， 此时Visual Java Builder 就需要把这JButton的类通过反射给new 出来， 所以就需要一个无参数的构造函数了。”</p>
+<p>“如果用户想去设置一下这个JButton的属性，Visual Java Builder 就需要先用自省/反射来获取这个JButton有哪些属性（通过getter/setter）， 拿到以后就可以给用户显示一个<strong>属性清单</strong>了， 例如背景色， 字体 等等。用户看到后就可以设置背景色和字体了，  此时Visual Java Builder 在内部就需要调用这个Bean的setBackgroundCorlor()/setFont() 等方法， 这就是所谓的setXXXX()方法。”</p>
+<p>“如果用户想对这个JButton编程， Visual Java Builder 还是通过自省/反射来获取这个JButton有哪些事件， 给用户展示一个事件清单，例如click , keyboardPressed 用户可以选取一个， 然后就可以写程序对这个事件编程了。”</p>
+<p>“可是那个序列化有什么用呢？”</p>
+<p>“这是因为用户设计完了以后，可能关掉Visual Java Builder 啊 , 如果不通过序列化把设计好的JButton保存起来， 下次再打开Visual Java Builder , 可就什么都没有了”</p>
+<p>我想了想， 小码哥设计的不错，仅仅用了一个简单的规范就满足了可视化编辑器的所有要求。 </p>
+<p>“那我们就发布这个规范吧， 咱们自己先做一个可视化编辑器，给别人做个榜样， 名称我都想好了， 叫NetBean吧。”</p>
+<p>刘欣（微信公众号：码农翻身）注：这是我杜撰的， 实际上NetBean这个名称可能和java bean 并没有实际关联。 </p>
+<p>果然不出我们所料， Java bean 发布以后， 有力的带动了Java 的IDE市场，  开发Delphi的Borland公司 也来插了一脚，搞出了一个JBuilder, 风靡一时。 </p>
+<p>IBM 搞了一个Visual Age for Java ,  后来摇身一变， 成了一个叫Eclipse的开放平台，超级受大家欢迎， 它反过头来把我们的Netbean 和 JBuilder 逼的快没有活路了。 </p>
+<p>虽然我们玩的很欢，但是程序员根本不买账， Java 在桌面开发市场还是没有起色，使用Java bean 创建桌面程序的程序员少之又少， 只有部分像金融、ERP这样的领地还在坚持。   </p>
+<p>看来是无药可救了。 </p>
+<p>但是Java bean 何去何从 ？ 丢弃掉太可惜了，   我和小码哥商量了一下， 我们觉得：既然我们Java在统治了服务器端的编程， 还是在那里想想办法吧……</p>
+<p>未完待续。 </p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/4840fe7d-JavaEmpire-JavaBean-1/" data-id="cite4b4h7001g9wtvcol71fhs" class="article-share-link" data-share="baidu" data-title="【转】Java 帝国之Java bean (上）">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/4840fe7d-JavaEmpire-JavaBean-1/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java番外篇/">Java番外篇</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/6f8dd084-about-Java-Virtual-Machine/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          关于JVM虚拟机
+        
+      </div>
+    </a>
+  
+  
+    <a href="/6dbb87cc-Java-the-birth-of-an-empire/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">【转】Java： 一个帝国的诞生</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="4840fe7d-JavaEmpire-JavaBean-1/" data-title="【转】Java 帝国之Java bean (上）" data-url="http://nibnait.com/4840fe7d-JavaEmpire-JavaBean-1/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

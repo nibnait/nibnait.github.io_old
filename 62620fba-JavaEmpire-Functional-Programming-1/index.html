@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】Java 帝国之函数式编程（上） | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513149&amp;amp;idx=1&amp;amp;sn=00e563fbd09c9cf9e2ac4283d43cccf1&amp;amp;scene=1&amp;amp;srcid=0627syblBAISNALUYldTbTxY&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】Java 帝国之函数式编程（上）">
+<meta property="og:url" content="http://nibnait.com/62620fba-JavaEmpire-Functional-Programming-1/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513149&amp;amp;idx=1&amp;amp;sn=00e563fbd09c9cf9e2ac4283d43cccf1&amp;amp;scene=1&amp;amp;srcid=0627syblBAISNALUYldTbTxY&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-06-27T18:02:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】Java 帝国之函数式编程（上）">
+<meta name="twitter:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513149&amp;amp;idx=1&amp;amp;sn=00e563fbd09c9cf9e2ac4283d43cccf1&amp;amp;scene=1&amp;amp;srcid=0627syblBAISNALUYldTbTxY&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-62620fba-JavaEmpire-Functional-Programming-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/62620fba-JavaEmpire-Functional-Programming-1/" class="article-date">
+  <time datetime="2016-06-09T16:51:24.000Z" itemprop="datePublished">2016-06-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】Java 帝国之函数式编程（上）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513149&amp;idx=1&amp;sn=00e563fbd09c9cf9e2ac4283d43cccf1&amp;scene=1&amp;srcid=0627syblBAISNALUYldTbTxY&amp;pass_ticket=QrfnD%2BuaEgpuqOnN6%2FGXOi567jtFjIp2BC3s%2FUjmZiv8wSD%2FZ5ZT%2BQLisdjZLtci#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513149&amp;idx=1&amp;sn=00e563fbd09c9cf9e2ac4283d43cccf1&amp;scene=1&amp;srcid=0627syblBAISNALUYldTbTxY&amp;pass_ticket=QrfnD%2BuaEgpuqOnN6%2FGXOi567jtFjIp2BC3s%2FUjmZiv8wSD%2FZ5ZT%2BQLisdjZLtci#rd</a></p>
+</blockquote>
+<a id="more"></a>
+<h1 id="1-游行示威"><a href="#1-游行示威" class="headerlink" title="1. 游行示威"></a>1. 游行示威</h1><p>Java 帝国成立20多年了，  20多年来帝国给每个程序员都提供了趁手的工具箱， 里边装着面向对象， 自动内存管理，泛型 ， 类型安全等强大的工具，<br>大家用这些工具开发了无数的框架和系统，都夸Java大法好。</p>
+<p>可以最近出现了一点新情况， 一群函数式编程的狂热份子不停的到总部来游行， 要求帝国向LISP学习， 支持函数式编程， 他们的理由也很充分：<br>“很多语言都支持函数式编程了，比如 Ruby , Python… </p>
+<p>“人家微软的C#很早就支持了…”</p>
+<p>“同样是运行在Java 虚拟机上的语言，那些杂牌军Scala , Clojure 都有函数式编程 ,   我们的精锐，中央军Java 怎么就不支持呢？”</p>
+<p>这样的声音虽然不是主流，但越来越多也让我不胜其烦， 我把我最得力的助手小码哥叫来商量对策：</p>
+<p>“小码， 外边那一群狂热分子叫嚣的函数式编程到底是什么东西？”</p>
+<p>“唉， 老大， 其实我也不知道函数式编程的确切定义， 我只知道LISP是函数式编程的鼻祖，并且像LISP这样的语言学习起来很难，和我们的面向对象完全是两个世界， 但奇怪的是很多掌握了LISP的人都无可救药的爱上了她。”</p>
+<p>“那它肯定有什么过人之处 ！”  我说</p>
+<p>“像C,C++，Java， 用他们编程是一种命令式的风格， 告诉计算机如何如何做， 而用LISP编程是一种声明式的风格，就像SQL一样， 只是描述我要什么， 不去具体的描述怎么去做”   </p>
+<p>“听起来很不错啊 ”   我觉得一门语言能用声明式的方式来编程， 对程序员绝对是福音啊。</p>
+<p>“此外， 面向对象编程更多的是对数据进行抽象， 而函数式编程是对行为进行抽象， 在LISP世界里，函数是一等公民， 函数可以当做参数传递给另外一个函数，  函数也可以作为另外一个函数的返回值。”</p>
+<p>“只用函数进行编程， 听起来不可思议啊！”</p>
+<p>“是啊， 所以如果你学过面向对象的语言，像咱们Java,  再去学LISP, 会感到一片迷茫， 无所适从， 真气浑身乱窜， 好久才能平息下来。 ”</p>
+<h1 id="2-强类型"><a href="#2-强类型" class="headerlink" title="2. 强类型"></a>2. 强类型</h1><p>“那我们能不能学一下Ruby , Python 在咱们Java 中添加一点函数式编程的特性， 至少让这些刁民， 奥不， 狂热分子安静下来？ ”</p>
+<p>小码想了一会说： “有点难度， 因为Java 有一个特点，就是强类型的。”</p>
+<p>“强类型？ ，这是什么意思？ “我问他</p>
+<p>“是啊， 强类型， 简单的说无论任何变量都得有个类型， 并且不能变。”</p>
+<p>小码哥没料到我还不知道这个概念， 开始兴致勃勃的给我普及。</p>
+<p>”比如你可以声明一个变量</p>
+<blockquote>
+<p>Person p = new Person();<br>可是如果你想让p指向另外一个对象 ：<br>p = new House();</p>
+</blockquote>
+<p>我们伟大的java编译器立刻就能告诉你错误：  <strong>‘类型不匹配， 不能把House转化成 Person’</strong> </p>
+<p>强类型的好处是显而易见的， 我们在编译期间就可以消灭大部分的错误，并且还可以在你用IDE编程的时候做出很‘智能’的提示， 帮你自动补全代码。” </p>
+<p>“与之相对的就是弱类型，例如在Ruby 中一个变量根本不需要声明类型：</p>
+<blockquote>
+<p>p = Person.new<br>p = House.new</p>
+</blockquote>
+<p>这是没有任何问题的， 变量p 可以指向任何对象， 但是也丧失了提前发现错误的可能性， 很多错误只能在运行时暴露出来。 </p>
+<blockquote>
+<p>def do_something(p)<br><span style="opacity:0">asdf</span>p.walk(); // 假设walk只是Person独有的方法。<br>end</p>
+</blockquote>
+<p>系统检查不出来你到底是传递进去一个什么类型的对象，  如果p 指向一个House,  House是不能walk的，  那在运行时就会报错：<strong>“undefined method `walk’ for #<house:0x00000002f40590>”</house:0x00000002f40590></strong></p>
+<p>“但是弱类型也有好处， 例如<br>p = Animal.new<br>这个Animal 也有一个walk()方法。 那在调用do-something方法的时候完全没有问题！   ” </p>
+<p>我有点懂了： “是不是说由于Java 是强类型的， 如果想支持函数式编程， 我们也得给这些函数找个类型 ？”</p>
+<p>小码哥说：　“是啊，不过这有点难度”</p>
+<p>”咱们能不能重新的设计下Java 的类型系统 ？“ 我有点不甘心</p>
+<p>“肯定不行， 我们Java 帝国为了吸引程序员，并且为了维稳，  曾经对外郑重的承诺过： 帝国要保持向后兼容性，你就是用Jdk 1.1编译的代码， 在我们jdk 8中也能运行， 要是为了函数式编程，改动太大，估计很多程序员就要抛弃我们了。”</p>
+<p>“不管如何， 你得想想办法，在Java 中加上函数式编程， 帝国已经这么大了， 再加一点东西也没什么大不了的。” </p>
+<p>我给了小码哥三天时间。 </p>
+<h1 id="3-Lambda-表达式-和-类型推断"><a href="#3-Lambda-表达式-和-类型推断" class="headerlink" title="3. Lambda 表达式 和 类型推断"></a>3. Lambda 表达式 和 类型推断</h1><p>过了两天，小码哥就兴冲冲的来找我了： “老大，你看看，我设计出了java 中的Lambda表达式”</p>
+<p>我接过纸一看， 上面写着：</p>
+<blockquote>
+<p>() -&gt; System.out.println(“Hello Lambda”);<br>s-&gt; s.toUpperCase();<br>(x,y) -&gt; x +y ;   </p>
+</blockquote>
+<p>“这看起来像是个函数啊？ 还起个这么时髦的名字Lambda !”</p>
+<p>“对，Lambda可以说就是<strong>匿名函数</strong>， 我定义的语法是这样的， 箭头(-&gt;) 左边是<strong>函数的参数列表</strong>， 右边是<strong>方法体</strong>”</p>
+<p>我看了看， 确实是， 第一个表达式 没有参数，  函数体是打印”Hello Lambda”</p>
+<p>第二个函数有一个参数 ,  函数体似乎是把这个参数变成大写字符。 </p>
+<p>第三个函数有两个参数， 函数体是把两个参数相加</p>
+<p>“小码，既然它们是函数， 按照函数式编程风格， 就能把这些函数当做参数传递给另外一些函数了？ ”</p>
+<p>“那是自然， 我给你举个例子“  小码哥说</p>
+<p>例如我们有这么个接口：</p>
+<blockquote>
+<p>public interface <strong>StringFuction</strong>{<br><span style="opacity:0">asdf</span>public <strong>String apply(String s);</strong><br>}</p>
+</blockquote>
+<p>还有这么个函数：</p>
+<blockquote>
+<p>public String  run (<strong>StringFuction f</strong>){<br><span style="opacity:0">asdf</span>return <strong>f.apply</strong>(“Ｈello Ｗorld”);<br>}</p>
+</blockquote>
+<p>现在就可以把“<strong>匿名函数</strong>”当做参数传递给另外一个函数了</p>
+<blockquote>
+<p>run (s -&gt; s.toUpperCase()) ;</p>
+</blockquote>
+<p>返回值就是大写字符串： HELLO WORLD</p>
+<p>如果我们传递进去一个别的Lambda 表达式：</p>
+<blockquote>
+<p>run (s -&gt; s.toLowerCase()) ;  </p>
+</blockquote>
+<p>返回值就是小写字符串：　hello world</p>
+<p>”我有个问题， 上次你说过咱们Java 都是强类型的， 所有的东西都得有类型， 那这个Lambda表达式s -&gt; s.toUpperCase()  的类型是什么？ ”</p>
+<p>小码哥说： “唉， 为了这个问题， 我可是费劲了， 我搞了个‘<strong>类型推断</strong>’， 由编译器智能的推断出s -&gt; s.toUpperCase()的类型， 其实在上面的例子中， 这个Lambda表达式的类型就是StringFunction!”</p>
+<p>“注意”小码哥接着说， “这个StringFunction 的apply方法接收一个字符串参数， 然后返回另外一个字符串的值。</p>
+<p>所以当我们用s -&gt; s.toUpperCase() 去调用的时候， 就会知道 s 就是apply的参数， s.toUpperCase()其实就是这个方法的实现了， 这个方法的返回值也是String ”</p>
+<p>“奥，我明白了， 其实就是我们之前的匿名类嘛，我们完全可以这么写“</p>
+<blockquote>
+<p>run(new StringFuction(){<br><span style="opacity:0">asdf</span>public String apply(String s) {<br><span style="opacity:0">asdfasdf</span>return s.toUpperCase();<br><span style="opacity:0">asdf</span>}<br>}</p>
+</blockquote>
+<p>“对的，本质就是这样， 对于Lambda表达式，我们只是会做更多的类型推断，如果你这么调用 : </p>
+<blockquote>
+<p>run(s -&gt; s.length())；</p>
+</blockquote>
+<p>“那编译就不通过了， 因为这个匿名函数的返回值是int ,  它不符合接口(StringFunction）的方法(apply)的语义， 接受一个字符串, 然后返回一个字符串。 ”</p>
+<p>“那个函数接口的方法名称（apply）重要吗？” 我接着问</p>
+<p>“不重要， <strong>关键是它的输入类型和返回值，</strong> 至于名称，尽可能的好一点吧”</p>
+<p>“唉，小码，我有点懂了， 为了维护Java 的强类型， 还得定义一个函数接口， 然后编译器会把这些匿名函数（Lambda表达式） 和这个接口做匹配，  但是你让程序员们定义函数接口， 太麻烦了吧？ ”</p>
+<p>小码哥不慌不忙 ： “这个问题我考虑过了，我已经对咱的JDK做了增强， 特别引入了一个叫java.util.function 的包， 里边现成的函数接口足够大部分人用了”</p>
+<p>说着， 小码哥给我展示了一个文档：</p>
+<p>(1)   Function函数接口： 传入一个类型为T的参数， 返回一个类型为R 的参数</p>
+<blockquote>
+<p>public interface Function<t,r>{<br><span style="opacity:0">asdf</span>R apply(T t);<br><span style="opacity:0">asdf</span> ……<br>}</t,r></p>
+</blockquote>
+<p>(2)  Predicate<t> 函数接口  ：传入一个类型为Ｔ　的参数，　返回boolean  </t></p>
+<blockquote>
+<p>public interface Predicate<t> {<br><span style="opacity:0">asdf</span>boolean test(T t);<br><span style="opacity:0">asdf</span>……<br>}</t></p>
+</blockquote>
+<p>(3)  Consumer<t>函数接口  ： 传入一个类型为T的参数，没有返回值， 执行你自定义的操作</t></p>
+<blockquote>
+<p>public interface  Consumer<t> {<br><span style="opacity:0">asdf</span>void accept(T t);<br><span style="opacity:0">asdf</span>……<br>}</t></p>
+</blockquote>
+<p>例如</p>
+<blockquote>
+<p>s -&gt; s.length()  就可以匹配 (1)<br>x -&gt; x&gt;5   就可以匹配 (2)<br>s -&gt;  System.out.println(s)  就可以匹配 (3)</p>
+</blockquote>
+<p>我不仅暗暗赞叹：还是抽象大法好。 </p>
+<p>“小码，我明白你的苦心， 这些确实都是高度的抽象啊”</p>
+<p>“老大， 这是没办法的事啊， 想想我们java 帝国那么多工具，框架， 咱必须得保持向后兼容性啊。 所以一定得坚持强类型， 即使是匿名函数， 也得给它找个类型，即函数接口 ！“ </p>
+<p>“但是有了这么东西还是不够， 似乎没有体现出像SQL那样‘声明式’编程的好处啊？ ”</p>
+<p>“确实不够， 我们得把类库好好改改， 真正体现函数式编程的特性， 我打算引入一个叫做Stream的概念。”</p>
+<p>(未完待续)</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/62620fba-JavaEmpire-Functional-Programming-1/" data-id="cite4b4i200249wtvd5pmbgrg" class="article-share-link" data-share="baidu" data-title="【转】Java 帝国之函数式编程（上）">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/62620fba-JavaEmpire-Functional-Programming-1/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java番外篇/">Java番外篇</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/8fcf0e71-TCP-IP-ILLustrated-Volume-1-The-Protocols/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          TCP/IP详解 卷1：协议
+        
+      </div>
+    </a>
+  
+  
+    <a href="/b3dcfa99-Computer-Networking-advanced/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">计算机网络-进阶</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="62620fba-JavaEmpire-Functional-Programming-1/" data-title="【转】Java 帝国之函数式编程（上）" data-url="http://nibnait.com/62620fba-JavaEmpire-Functional-Programming-1/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

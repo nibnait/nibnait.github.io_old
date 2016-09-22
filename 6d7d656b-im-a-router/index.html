@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】我是一个路由器 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513173&amp;amp;idx=1&amp;amp;sn=6ec5281b12ed5195070fa4df22383595&amp;amp;scene=1&amp;amp;srcid=0627CDacGQUGTDaYwsDaX5WZ&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】我是一个路由器">
+<meta property="og:url" content="http://nibnait.com/6d7d656b-im-a-router/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513173&amp;amp;idx=1&amp;amp;sn=6ec5281b12ed5195070fa4df22383595&amp;amp;scene=1&amp;amp;srcid=0627CDacGQUGTDaYwsDaX5WZ&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-1.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-2.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-4.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-5.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-6.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-06-27T17:57:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】我是一个路由器">
+<meta name="twitter:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513173&amp;amp;idx=1&amp;amp;sn=6ec5281b12ed5195070fa4df22383595&amp;amp;scene=1&amp;amp;srcid=0627CDacGQUGTDaYwsDaX5WZ&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-1.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-6d7d656b-im-a-router" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/6d7d656b-im-a-router/" class="article-date">
+  <time datetime="2016-06-22T17:37:00.000Z" itemprop="datePublished">2016-06-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】我是一个路由器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513173&amp;idx=1&amp;sn=6ec5281b12ed5195070fa4df22383595&amp;scene=1&amp;srcid=0627CDacGQUGTDaYwsDaX5WZ&amp;pass_ticket=QrfnD%2BuaEgpuqOnN6%2FGXOi567jtFjIp2BC3s%2FUjmZiv8wSD%2FZ5ZT%2BQLisdjZLtci#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513173&amp;idx=1&amp;sn=6ec5281b12ed5195070fa4df22383595&amp;scene=1&amp;srcid=0627CDacGQUGTDaYwsDaX5WZ&amp;pass_ticket=QrfnD%2BuaEgpuqOnN6%2FGXOi567jtFjIp2BC3s%2FUjmZiv8wSD%2FZ5ZT%2BQLisdjZLtci#rd</a></p>
+</blockquote>
+<a id="more"></a>
+<p>我就是网卡TP-Link 7954经常和大家提起的<strong>网关路由器</strong>，  我在网络中的位置是这样的：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-1.png" alt=""></p>
+<p>为啥叫网关呢？ 因为大家想上网，一定得经过我这一关  :-)</p>
+<p>这不是开玩笑，确实是这样， 所有的对局域网之外的访问那非得经过我不可。</p>
+<p>其实我直接和ISP(就是联通！)的网络相连，  我从联通那里搞了一个外网的地址： 61.52.247.112 。</p>
+<p>可是只有这么一个地址， 我们局域网内这么多电脑， 如果轮流着让每个电脑去用， 那大家可就抱怨死了。 </p>
+<p>于是我巧妙的构思了一个网络世界，  成功的欺骗了TP-Link 7954这些网卡们。</p>
+<h1 id="1-NAT-网络地址转换"><a href="#1-NAT-网络地址转换" class="headerlink" title="1. NAT (网络地址转换)"></a>1. NAT (网络地址转换)</h1><p>还记得上次TP-Link 7954 向我要地址的事儿吗 ? </p>
+<p>因为我不仅仅是个路由器， 还是一个DHCP服务器， 掌握着这个局域网的IP生杀大权。</p>
+<p>我给TP-Link 7954 分配的IP是 192.168.1.2  ， 但是他拿这个地址是无法直接上网的， 因为这是属于我管辖的内网地址， 别的网站像www.baidu.com  根本都不知道！</p>
+<p>即使知道了也没用， 因为在这个世界上可能有无数的路由器都会分配192.168.xxx.xxx 这样的地址， 你到底要找哪一个？</p>
+<p>所以TP-Link 7954 想上网必须得通过我， 我需要施展一点点小魔法， 比如说它想访问百度， 通过交换机给我发来这么一个数据帧：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-2.png" alt=""></p>
+<p>我把数据链路层的外衣去掉， 发现IP数据包中的目标地址是 115.239.211.112， <strong>我就知道这是要向外网发出请求了。</strong></p>
+<p>于是我就把IP数据包中的源地址192.168.1.2 替换成我从联通那里搞到的外网地址  61.52.247.112。</p>
+<p>这还不够， 我会创建一个新的端口号2001， 把TCP数据包中的源端口也替换掉， 数据包就变成了这个样子：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-3.png" alt=""></p>
+<p><strong>不知道你看出来其中的奥妙没有，我把源地址和源端口都替换了， 其实我的目的就是让外部的网络认为这是我（路由器）发出的， 他们根本不知道什么TP-Link 7954 这个网卡 ！</strong></p>
+<p>然后我需要查一下我的路由表，确定到底转发到哪个输出端口去，再给这个IP数据报穿上数据链路层的外衣，把数据包发给了联通的网络， 剩下的事我就不管了。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-4.png" alt=""></p>
+<p>注意看以太网帧的MAC地址， 源地址已经是我了，而不是TP-Link 7954了， 因为这是我和联通网络之间的数据链路。</p>
+<p>这个替换源地址和源端口的小把戏就叫做<strong>网络地址转换</strong> , 人类简称为<strong>NAT</strong>。</p>
+<p>当然不只是TP-Link7954通过我上网， 还有很多别的电脑呢， 我得把我的小把戏记下来 ，形成这么一张表：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-5.png" alt=""></p>
+<p>过了不久， baidu 网站的回复就会通过别的路由器转到我这里，正如你所想的， 我需要反过来处理一遍：<br>首先去掉数据链路层的外衣，发现TCP和IP数据报中包含这样的信息：<br>目的地IP : 61.52.247.112 , 端口 2001 </p>
+<p>这时候我就去查表， 找到了 192.168.1.2:3345  ， 我就明白这是给TP-Link 7954的信了。 </p>
+<p>那就再次把数据报中的IP地址和端口号改了吧， 让TP-Link 7954 认为这个数据包就是我给他的。</p>
+<p>就这样， 我成功的用区区一个外网的IP就支持了局域网内多个电脑的上网需求， 并且他们根本就不知道是怎么回事！</p>
+<h1 id="2-NAT-穿越"><a href="#2-NAT-穿越" class="headerlink" title="2. NAT 穿越"></a>2. NAT 穿越</h1><p>欺骗终究是不能长久的， 我的麻烦很快就来了。</p>
+<p>TP-Link 7954 所在的机器为了下载一个大电影， 安装了一个P2P软件： 电驴。 </p>
+<p>所谓的P2P 就是Peer to Peer， 即网络中的机器是对等的。</p>
+<p>所有使用电驴的机器不仅仅是一个发起请求下载数据的客户端，    他们同时也是一个能够接受请求，向外发送数据的服务器。</p>
+<p>这样一来， 当下载大文件的时候， 你就可以从很多安装了电驴的机器上分块下载， 而不是仅仅从一个服务器上下载， 速度快了很多。</p>
+<p>人人为我， 我为人人啊。 </p>
+<p>可是TP-Link7954 很快就发现， 当它试图做服务器的时候， 其他电驴根本就连不上它， 为什么？ </p>
+<p>因为IP地址是我分配的啊， 是个内网地址 192.168.1.2， 外网的人根本就不知道， 怎么连？</p>
+<p>TP-Link 7954 给我发了一封措辞严厉的信件，质问我为什么他没法作为一个服务器接受外边的连接， 这强烈的阻碍了他们下载各种电影的需求。</p>
+<p>我估摸着是瞒不住了， 只好把所有的网卡都召集起来，开个会大家商量一下。</p>
+<p>我解释说： “现在IP地址很稀缺， 我用这种NAT的方法也是不得已而为之，要不然大家怎么上网啊， 你们之前不是过的也挺好吗？ 我听说电驴会占用很大的流量， 我们公司很快就会禁止的。”</p>
+<p>D-Link 3925 说 : “公司的政策根本不是你应该考虑的事， 你考虑的是怎么才能让外网的电驴连上我们！”</p>
+<p>可是我实在是没有办法， 就这一个外网的IP地址啊。 </p>
+<p>TP-Link 7954倒是很聪明，　他立刻就意识到了问题所在，想出了解决办法：</p>
+<p>“这样吧，　路由器，你不是擅长搞玩小把戏吗， 可以继续玩下去， 但是得允许我们这些网卡参与进来玩， 比如说我（ip地址192.168.1.2）会主动的要求你建立一个NAT映射 (192.168.1.2 : 4096) &lt;-&gt; (61.52.247.112: 3001)。 </p>
+<p>“你还可以保存在你的NAT表中，  然后我就会对外通告了， 我是一个电驴服务器， 谁要是想连接我的话，请到这里来：61.52.247.112: 3001，当外网的连接来的时候， 你必须把连接请求转发到我这里来”</p>
+<p>大家一致认为这个方法很简单， 很实用， 就这么决定了。</p>
+<p>“码农翻身”公众号注：这其实就是UPnP , 你打开你的无线路由器，就能看到 ：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/6d7d656b-6.png" alt=""></p>
+<p>事情就这么解决了，生活又恢复了平静，当然，我作为一个路由器，这些NAT, UPnP都是我的附加功能， 我最重要的事情还是建立路由表， 做路由选择，转发IP数据包，下次再说吧。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/6d7d656b-im-a-router/" data-id="cite4b4ii002g9wtvmziqfrp3" class="article-share-link" data-share="baidu" data-title="【转】我是一个路由器">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/6d7d656b-im-a-router/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/c1b0daa6-Spring--Dependency-Injection/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          【转】Spring 的本质系列(1) -- 依赖注入
+        
+      </div>
+    </a>
+  
+  
+    <a href="/geektools4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">GeekTools4-一些好玩的安卓应用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="6d7d656b-im-a-router/" data-title="【转】我是一个路由器" data-url="http://nibnait.com/6d7d656b-im-a-router/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

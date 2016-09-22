@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>有趣的斐波那契数列 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、起源和定义斐波那契数列最早被提出是印度数学家Gopala，他在研究箱子包装物件长度恰好为1和2时的方法数时首先描述了这个数列。也就是这个问题：
+
+有n个台阶，你每次只能跨一阶或两阶，上楼有几种方法？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有趣的斐波那契数列">
+<meta property="og:url" content="http://nibnait.com/ca6c3381-Fibonacci/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="一、起源和定义斐波那契数列最早被提出是印度数学家Gopala，他在研究箱子包装物件长度恰好为1和2时的方法数时首先描述了这个数列。也就是这个问题：
+
+有n个台阶，你每次只能跨一阶或两阶，上楼有几种方法？">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-1.jpg">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-2.jpg">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-4.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-5.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-6.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-7.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-8.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-9.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-10.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-11.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-12.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-13.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-14.png">
+<meta property="og:updated_time" content="2016-06-14T08:34:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="有趣的斐波那契数列">
+<meta name="twitter:description" content="一、起源和定义斐波那契数列最早被提出是印度数学家Gopala，他在研究箱子包装物件长度恰好为1和2时的方法数时首先描述了这个数列。也就是这个问题：
+
+有n个台阶，你每次只能跨一阶或两阶，上楼有几种方法？">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-1.jpg">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-ca6c3381-Fibonacci" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ca6c3381-Fibonacci/" class="article-date">
+  <time datetime="2016-06-14T01:54:52.000Z" itemprop="datePublished">2016-06-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随便聊聊/">随便聊聊</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      有趣的斐波那契数列
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、起源和定义"><a href="#一、起源和定义" class="headerlink" title="一、起源和定义"></a>一、起源和定义</h1><p>斐波那契数列最早被提出是印度数学家Gopala，他在研究箱子包装物件长度恰好为1和2时的方法数时首先描述了这个数列。也就是这个问题：</p>
+<blockquote>
+<p>有n个台阶，你每次只能跨一阶或两阶，上楼有几种方法？</p>
+</blockquote>
+<a id="more"></a>
+<p>而最早研究这个数列的当然就是<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91" target="_blank" rel="external">斐波那契（Leonardo Fibonacci）</a>了，他当时是为了描述如下情况的兔子生长数目：</p>
+<blockquote>
+<ul>
+<li>第一个月初有一对刚诞生的兔子</li>
+<li>第二个月之后（第三个月初）它们可以生育</li>
+<li>每月每对可生育的兔子会诞生下一对新兔子</li>
+<li>兔子永垂不死</li>
+</ul>
+</blockquote>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-1.jpg" alt=""></p>
+<p>这个数列出自他赫赫有名的大作《计算之书》（没有维基词条，坑），后来就被广泛的应用于各种场合了。这个数列是这么定义的：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-2.jpg" alt=""></p>
+<h1 id="二、求解方法"><a href="#二、求解方法" class="headerlink" title="二、求解方法"></a>二、求解方法</h1><h2 id="1-递归方法"><a href="#1-递归方法" class="headerlink" title="1. 递归方法"></a>1. 递归方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">private static int Fib1(int n) &#123;</div><div class="line">	return n&lt;2? (n&lt;1?0:1) : Fib1(n-1)+Fib1(n-2); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这是编程最方便的解法，当然，也是效率最低的解法，原因是会出现大量的重复计算。以f(10)为例，f(10)=f(9)+f(8)，f(9)=f(8)+f(7)。其中的f(8)就是重复计算的。为了避免这种情况，可以采用递推的方式。</p>
+<h2 id="2-数组递推方法"><a href="#2-数组递推方法" class="headerlink" title="2. 数组递推方法"></a>2. 数组递推方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">	private static int Fib2(int n) &#123;</div><div class="line"></div><div class="line">	if (n &lt;= 0) &#123;</div><div class="line">		return 0;</div><div class="line">	&#125; else if (n == 1) &#123;</div><div class="line">		return 1;</div><div class="line">	&#125; else &#123;</div><div class="line">		int[] fib = new int[n + 1];</div><div class="line">		fib[0] = 0;</div><div class="line">		fib[1] = 1;</div><div class="line"></div><div class="line">		for (int i = 2; i &lt; n + 1; i++) &#123;</div><div class="line">			fib[i] = fib[i - 1] + fib[i - 2];</div><div class="line">		&#125;</div><div class="line">		return fib[n];</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/*</div><div class="line"> * 优化：利用数组我们保存了每一个中间变量，</div><div class="line"> * 但是仔细观察我们可以发现，当他只想求斐波那契数列的第n个数时，</div><div class="line"> * 没有必要保存每一个中间变量，我们只需要保存两个临时变量即可完成斐波那契数列的计算。</div><div class="line"> */</div><div class="line"></div><div class="line">private static long Fib3(int n) &#123;</div><div class="line">	</div><div class="line">	if (n &lt;= 0) &#123;</div><div class="line">		return 0;</div><div class="line">	&#125; else if (n == 1) &#123;</div><div class="line">		return 1;</div><div class="line">	&#125; else &#123;</div><div class="line"></div><div class="line">		long fibNMinusOne = 0;</div><div class="line">		long fibNMinusTwo = 1;</div><div class="line">		long fibN = 0;</div><div class="line">		</div><div class="line">		for (int i = 2; i &lt; n+1; i++) &#123;</div><div class="line">			fibN = fibNMinusOne + fibNMinusTwo;</div><div class="line">			</div><div class="line">			fibNMinusOne = fibNMinusTwo;</div><div class="line">			fibNMinusTwo = fibN;</div><div class="line">		&#125;</div><div class="line">		return fibN;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>递推的方法可以在O(n)的时间内求出Fib(n)的值。但是这实际还是不够好，因为当n很大时这个算法还是无能为力的。接下来就要来讲一个有意思的东西：矩阵。</p>
+<h2 id="3-矩阵递推关系"><a href="#3-矩阵递推关系" class="headerlink" title="3. 矩阵递推关系"></a>3. 矩阵递推关系</h2><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-3.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">作者：王希</div><div class="line">链接：https://www.zhihu.com/question/28062458/answer/39763094</div><div class="line">来源：知乎</div><div class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</div><div class="line"></div><div class="line">#include &lt;cstdio&gt;</div><div class="line">#include &lt;iostream&gt;</div><div class="line"></div><div class="line">using namespace std;</div><div class="line"></div><div class="line">const int MOD = 10000;</div><div class="line"></div><div class="line">struct matrix//定义矩阵结构体</div><div class="line">&#123;</div><div class="line">    int m[2][2];</div><div class="line">&#125;ans, base;</div><div class="line"></div><div class="line">matrix multi(matrix a, matrix b)//定义矩阵乘法</div><div class="line">&#123;</div><div class="line">    matrix tmp;</div><div class="line">    for(int i = 0; i &lt; 2; ++i)</div><div class="line">    &#123;</div><div class="line">        for(int j = 0; j &lt; 2; ++j)</div><div class="line">        &#123;</div><div class="line">            tmp.m[i][j] = 0;</div><div class="line">            for(int k = 0; k &lt; 2; ++k)</div><div class="line">                tmp.m[i][j] = (tmp.m[i][j] + a.m[i][k] * b.m[k][j]) % MOD;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return tmp;</div><div class="line">&#125;</div><div class="line">int fast_mod(int n)  // 求矩阵 base 的  n 次幂 </div><div class="line">&#123;</div><div class="line">    base.m[0][0] = base.m[0][1] = base.m[1][0] = 1;</div><div class="line">    base.m[1][1] = 0;</div><div class="line">    ans.m[0][0] = ans.m[1][1] = 1;  // ans 初始化为单位矩阵 </div><div class="line">    ans.m[0][1] = ans.m[1][0] = 0;</div><div class="line">    while(n)</div><div class="line">    &#123;</div><div class="line">        if(n &amp; 1)  //实现 ans *= t; 其中要先把 ans赋值给 tmp，然后用 ans = tmp * t </div><div class="line">            ans = multi(ans, base);</div><div class="line"></div><div class="line">        base = multi(base, base);</div><div class="line">        n &gt;&gt;= 1;</div><div class="line">    &#125;</div><div class="line">    return ans.m[0][1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int n;</div><div class="line">    while(scanf(&quot;%d&quot;, &amp;n) &amp;&amp; n != -1)</div><div class="line">    &#123;   </div><div class="line">        printf(&quot;%d\n&quot;, fast_mod(n));</div><div class="line">    &#125;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="三、斐波那契数列的数学性质"><a href="#三、斐波那契数列的数学性质" class="headerlink" title="三、斐波那契数列的数学性质"></a>三、斐波那契数列的数学性质</h1><p>知乎大牛王希 讲了好多<a href="https://www.zhihu.com/question/28062458/answer/39763094" target="_blank" rel="external">https://www.zhihu.com/question/28062458/answer/39763094</a></p>
+<p>然而 我只看懂了一个，那就是    原来我们中国的杨辉三角中也蕴含着斐波那契数列啊：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-4.png" alt=""></p>
+<h1 id="四、斐波那契数列的应用"><a href="#四、斐波那契数列的应用" class="headerlink" title="四、斐波那契数列的应用"></a>四、斐波那契数列的应用</h1><h2 id="1-斐波那契堆"><a href="#1-斐波那契堆" class="headerlink" title="1. 斐波那契堆"></a>1. 斐波那契堆</h2><blockquote>
+<p>斐波那契堆(Fibonacci heap)是计算机科学中最小堆有序树的集合。它和二项式堆有类似的性质，可&gt;用于实现合并优先队列。特点是不涉及删除元素的操作有O(1)的平摊时间，用途包括稠密图每次&gt;Decrease－key只要O(1)的平摊时间，和二项堆的O(lgn)相比是巨大的改进。</p>
+<p>斐波那契堆由一组最小堆构成，这些最小堆是有根的无序树。可以进行插入、查找、合并和删除等操作</p>
+<ul>
+<li>1）插入：创建一个仅包含一个节点的新的斐波纳契堆，然后执行堆合并</li>
+<li>2）查找：由于用一个指针指向了具有最小值的根节点，因此查找最小的节点是平凡的操作。</li>
+<li>3）合并：简单合并两个斐波纳契堆的根表。即把两个斐波纳契堆的所有树的根首尾衔接并置。</li>
+<li>4）删除（释放）最小节点<br> 分为三步：<ol>
+<li>查找最小的根节点并删除它，其所有的子节点都加入堆的根表，即它的子树都成为堆所包含的&gt;树；</li>
+<li>需要查找并维护堆的最小根节点，但这耗时较大。为此，同时完成堆的维护：对堆当前包含的树&gt;的度数从低到高，迭代执行具有相同度数的树的合并并实现最小树化调整，使得堆包含的树具有不同的&gt;度数。这一步使用一个数组，数组下标为根节点的度数，数组的值为指向该根节点指针。如果发现具有&gt;相同度数的其他根节点则合并两棵树并维护该数组的状态。</li>
+<li>对当前堆的所有根节点查找最小的根节点。</li>
+</ol>
+</li>
+<li>5）降低一个点的键值：对一个节点的键值降低后，自键值降低的节点开始自下而上的迭代执行下&gt;述操作，直至到根节点或一个未被标记（marked）节点为止：<br>如果当前节点键值小于其父节点的键值，则把该节点及其子树摘下来作为堆的新树的根节点；其原父节&gt;点如果是被标记（marked）节点，则也被摘下来作为堆的新树的根节点；如果其原父节点不是被标记&gt;（marked）节点且不是根节点，则其原父节点被加标记。<br>如果堆的新树的根节点被标记（marked），则去除该标记。</li>
+<li>6）删除节点：把被删除节点的键值调整为负无穷小，然后执行“降低一个节点的键值”算法，然后&gt;再执行“删除最小节点”算法。</li>
+</ul>
+</blockquote>
+<p>维基百科：<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E5%A0%86" target="_blank" rel="external">斐波那契堆</a></p>
+<h2 id="2-欧几里得算法的时间复杂度"><a href="#2-欧几里得算法的时间复杂度" class="headerlink" title="2. 欧几里得算法的时间复杂度"></a>2. 欧几里得算法的时间复杂度</h2><p>欧几里得算法是求解两个正整数最大公约数的算法，又称辗转相除法。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public static int gcd(int p, int q)&#123;</div><div class="line">	return q==0 ? p : gcd(q, p%q);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在最坏的情况下，我们可以证明，若p较小，需要计算的次数为n，则 p&gt;F(n-1).</p>
+<h2 id="3-斐波那契螺旋"><a href="#3-斐波那契螺旋" class="headerlink" title="3. 斐波那契螺旋"></a>3. 斐波那契螺旋</h2><p>斐波那契螺旋又称黄金螺旋，在自然界中广泛存在。如图是一个边长为斐波那契数列的正方形组成的矩形。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-5.png" alt=""></p>
+<p>贝壳螺旋轮廓线  </p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-6.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-7.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-8.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-9.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-10.png" alt=""></p>
+<p>神奇的花：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-11.png" alt=""></p>
+<p>建筑学：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-12.png" alt=""></p>
+<p>斐波那契螺旋形的摇椅：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-13.png" alt=""></p>
+<p>感谢你读到了最后，</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/ca6c3381-14.png" alt="彩蛋"></p>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/28062458/answer/39763094" target="_blank" rel="external">Fibonacci数列为什么那么重要</a></li>
+<li><a href="http://www.cnblogs.com/hlxs/archive/2011/07/15/2107389.html" target="_blank" rel="external">7种方式实现斐波那契数列</a> 啊汉这逼装的，可以。。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/ca6c3381-Fibonacci/" data-id="cite4b4kg004q9wtvy9khpud0" class="article-share-link" data-share="baidu" data-title="有趣的斐波那契数列">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/ca6c3381-Fibonacci/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/264e49bf-Git-StudyNote/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Git学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/aa7abc25-Singleton-Pattern/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">单例模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="ca6c3381-Fibonacci/" data-title="有趣的斐波那契数列" data-url="http://nibnait.com/ca6c3381-Fibonacci/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

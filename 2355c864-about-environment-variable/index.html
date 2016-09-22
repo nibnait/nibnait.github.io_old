@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】聊聊环境变量 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对于一个初学者来说，最重要的莫过于环境变量了。很多的老师第一步总是会教你怎么用记事本来写java，然后怎么编译，然后怎么运行。这些都依赖于环境变量。那么我们首先来讲讲环境变量是什么东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】聊聊环境变量">
+<meta property="og:url" content="http://nibnait.com/2355c864-about-environment-variable/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="对于一个初学者来说，最重要的莫过于环境变量了。很多的老师第一步总是会教你怎么用记事本来写java，然后怎么编译，然后怎么运行。这些都依赖于环境变量。那么我们首先来讲讲环境变量是什么东西。">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-1.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-2.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-4.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-5.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-6.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-7.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-8.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-9.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-10.png">
+<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz/dnlya04DILR9tiadfUWzLOeUSr1jd3jFoBDmuY8Mv5PiaCQoRFF3QnpnnyvHS7WxzfkaszFl73X2apiabnbrreeew/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1">
+<meta property="og:updated_time" content="2016-06-03T15:18:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】聊聊环境变量">
+<meta name="twitter:description" content="对于一个初学者来说，最重要的莫过于环境变量了。很多的老师第一步总是会教你怎么用记事本来写java，然后怎么编译，然后怎么运行。这些都依赖于环境变量。那么我们首先来讲讲环境变量是什么东西。">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-1.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-2355c864-about-environment-variable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2355c864-about-environment-variable/" class="article-date">
+  <time datetime="2015-10-24T04:27:53.000Z" itemprop="datePublished">2015-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/随便聊聊/">随便聊聊</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】聊聊环境变量
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>对于一个初学者来说，最重要的莫过于环境变量了。很多的老师第一步总是会教你怎么用记事本来写java，然后怎么编译，然后怎么运行。这些都依赖于环境变量。<br>那么我们首先来讲讲环境变量是什么东西。<br><a id="more"></a><br>首先打开你的命令行，如果是win 7，直接在开始菜单输入cmd，就可以打开了<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-1.png" alt="1"></p>
+<p>这就是命令行</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-2.png" alt="2"></p>
+<p>先切换到我的工作目录f:/test（切换目录请自行百度，这里不是本贴的重点）<br>然后输入test，会提示‘test’ 不是内部或外部命令，也不是可运行程序或批处理文件</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-3.png" alt=""></p>
+<p>这是因为命令行自带一部分内部命令，并且提供外部命令执行某些操作，同时命令行也会在当前目录搜索可运行的程序或者批处理文件来执行，而我执行的test都不满足以前情况，所以报错，但如果我执行ping <a href="http://www.baidu.com，则可以正确运行，因为ping是一个外部命令。" target="_blank" rel="external">http://www.baidu.com，则可以正确运行，因为ping是一个外部命令。</a></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-4.png" alt=""></p>
+<p>那么这些命令为什么能运行呢？<br>我把环境变量下的%SystemRoot%\system32;这一段删除，重新打开命令行(必须新启一个，改变的环境变量不会影响已经打开的命令行窗口)<br>再次执行ping <a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a> 也出现了‘ping’ 不是内部或外部命令，也不是可运行程序或批处理文件<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-5.png" alt=""><br>而我执行c:\Windows\System32\PING.exe <a href="http://www.baidu.com则成功" target="_blank" rel="external">http://www.baidu.com则成功</a><br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-6.png" alt=""></p>
+<p>说明ping 命令是执行的c:\Windows\System32\文件夹下的ping.exe这个程序，所以我们可以确定环境变量是用来告诉命令行，我的每一个命令是在哪里来找。</p>
+<p>比如我在我的工作目录下创建一个test.bat里面只有一行代码 echo %1<br>然后再执行刚刚的test命令<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-7.png" alt=""></p>
+<p>现在就正常了，因为test现在是一个批处理文件了</p>
+<p>所以当我们敲java -version提示‘java’ 不是内部或外部命令，也不是可运行程序或批处理文件<br>时，我们就知道了，是path里面没有配置java.exe的路径。于是我们可以直接把java.exe的路径配置到path里面，再次执行java -version ，就正常了<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-8.png" alt=""></p>
+<p>那么为什么要配置CLASS_HOME和JAVA_HOME呢？<br>其实CLASS_HOME和JAVA_HOME就相当于两个变量，当你需要某个值时，通过JAVA_HOME就可以直接找到，你当然可以叫其他名字，但不建议，因为某些软件可能通过这两个名字来取得这两个变量的值。<br>那么JAVA_HOME是干什么的？<br>JAVA_HOME就是定义了java的安装路径，比如我的路径为C:\Program Files\Java\jdk1.8.0_51，那么我的JAVA_HOME的值就为C:\Program Files\Java\jdk1.8.0_51<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-9.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/2355c864-10.png" alt=""></p>
+<p>然后在Path里面配置java.exe的路径时，直接配置%JAVA_HOME%\bin。%JAVA_HOME%就是取jdk安装路径，然后得到完整的路径就是C:\Program Files\Java\jdk1.8.0_51\bin<br>通常我们需要配置两个路径%JAVA_HOME%\bin和%JAVA_HOME%\jre\bin，因为这俩个目录下有java给我们提供的工具。</p>
+<p>使用JAVA_HOME有什么好处呢？</p>
+<p>很多情况下你需要不同版本的java，比如工作需要jdk 6或者jdk7，但你喜欢挑战新事务，想了解jdk 8的新功能，那么你可以将原来的JAVA_HOME重命名为JAVA_HOME1，然后再建一个JAVA_HOME，设置为另一个版本的jdk路径，然后需要切换时，把使用的JAVA_HOME换成其他不影响使用的名字，把你需要的版本设置为JAVA_HOME，这样可以轻松切换jdk版本，当然，你也可以写一个程序，自己设置JAVA_HOME的路径，这样更轻松的切换jdk版本</p>
+<p>那么CLASS_PATH又是干嘛的呢？</p>
+<p>CLASS_PATH，顾名思意，就是class 的路径，class是我们编译后的文件，所以CLASS_PATH就是告诉java当我们需要找哪个类时，需要到哪里去找这个类。默认配置<br>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar<br>这两个类是java给我们提供的基础类库，如果你想使用其他类库，都可以配置在CLASS_PATH里，那么在程序运行时，就不需要再手动配置了<br>注意：1、eclipse等IDE写程序时，默认不是通过CLASS_PATH来获取类库的，所以依然需要你自己配置，但服务器上多个程序运行都依然的库，可以配置在CLASS_PATH中，避免每次加包或者减包没有把所有应用都同步操作而出错。<br>2、CLASS_PATH必须配置.; 点和分号，告诉java当前目录也要搜索</p>
+<p>现在再让你配置环境变量，你是不是感觉得心应手了呢？</p>
+<p>当然，每个人接受能力不同，处理问题也可能不细心，那么可能出现下面这种情况</p>
+<p>输入java -version 正常就以为环境变量配置成功了但输入javac时，就提示‘javac<br>’不是内部或外部命令，也不是可运行程序或批处理文件，</p>
+<p>这又是为什么呢？通过查看，我发现%JAVA_HOME%\jre\bin目录下有java.exe，但是没有javac.exe，所以导致java命令有用，而javac命令无效，所以只需要配置%JAVA_HOME%\bin就可以解决问题，</p>
+<p>当然也存在另外一种可能，就是%JAVA_HOME%\bin下没有javac.exe，这种情况可能是因为你的jdk安装出问题了，或者其他情况，重新安装应该是可以解决问题</p>
+<p>当然jdk的下载最好是通过官网，最好不要在第3方网站下载，最近的XCodeGhost事件影响很大，如果觉得官网下载太慢，从第三方下载后，最好通过官网提供的文件校验码对比来确认文件的真实性和完整性，通常为 MD5、SHA1等</p>
+<p>全文转载自 <a href="http://tieba.baidu.com/p/4070201193#rd" target="_blank" rel="external">j8大神okou19900722</a><div align="center"><img src="http://mmbiz.qpic.cn/mmbiz/dnlya04DILR9tiadfUWzLOeUSr1jd3jFoBDmuY8Mv5PiaCQoRFF3QnpnnyvHS7WxzfkaszFl73X2apiabnbrreeew/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1" width="80px" height="80px" alt=""></div></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/2355c864-about-environment-variable/" data-id="cite4b4ge000f9wtvec8cnoun" class="article-share-link" data-share="baidu" data-title="【转】聊聊环境变量">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/2355c864-about-environment-variable/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/e7fbff79-on-C-language-bitwise-operators/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          【转】关于C语言中的位操作符
+        
+      </div>
+    </a>
+  
+  
+    <a href="/44728315-Sublime-UserNote/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Sublime使用笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="2355c864-about-environment-variable/" data-title="【转】聊聊环境变量" data-url="http://nibnait.com/2355c864-about-environment-variable/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

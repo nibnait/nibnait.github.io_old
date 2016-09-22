@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】Spring 的本质系列(2) -- AOP | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513187&amp;amp;idx=1&amp;amp;sn=f603eee3e798e79ce010c9d58cd2ecf3&amp;amp;scene=0&amp;amp;pass_ticket=FoMQ%2Bi0rJ1U6SA778stF%2F5H7gGDciXgk%2FXasW6rmT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】Spring 的本质系列(2) -- AOP">
+<meta property="og:url" content="http://nibnait.com/f367b0a2-Spring--AOP/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513187&amp;amp;idx=1&amp;amp;sn=f603eee3e798e79ce010c9d58cd2ecf3&amp;amp;scene=0&amp;amp;pass_ticket=FoMQ%2Bi0rJ1U6SA778stF%2F5H7gGDciXgk%2FXasW6rmT">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-1.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-2.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-4.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-5.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-6.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-7.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-8.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-9.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-06-30T15:17:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】Spring 的本质系列(2) -- AOP">
+<meta name="twitter:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513187&amp;amp;idx=1&amp;amp;sn=f603eee3e798e79ce010c9d58cd2ecf3&amp;amp;scene=0&amp;amp;pass_ticket=FoMQ%2Bi0rJ1U6SA778stF%2F5H7gGDciXgk%2FXasW6rmT">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-1.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-f367b0a2-Spring--AOP" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/f367b0a2-Spring--AOP/" class="article-date">
+  <time datetime="2016-06-30T14:20:02.000Z" itemprop="datePublished">2016-06-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】Spring 的本质系列(2) -- AOP
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513187&amp;idx=1&amp;sn=f603eee3e798e79ce010c9d58cd2ecf3&amp;scene=0&amp;pass_ticket=FoMQ%2Bi0rJ1U6SA778stF%2F5H7gGDciXgk%2FXasW6rmTCq3NhjU2wZ1oTNtXuAAAzWi#rd" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513187&amp;idx=1&amp;sn=f603eee3e798e79ce010c9d58cd2ecf3&amp;scene=0&amp;pass_ticket=FoMQ%2Bi0rJ1U6SA778stF%2F5H7gGDciXgk%2FXasW6rmTCq3NhjU2wZ1oTNtXuAAAzWi#rd</a></p>
+</blockquote>
+<a id="more"></a>
+<p>AOP（Aspect Oriented Programming）就是面向切面的编程， 为什么是面向切面， 而不是面向对象呢？</p>
+<h1 id="1-问题来源"><a href="#1-问题来源" class="headerlink" title="1. 问题来源"></a>1. 问题来源</h1><p>我们在做系统设计的时候，一个非常重要的工作就是把一个大系统做分解， 按业务功能分解成一个个低耦合、高内聚的模块，就像这样：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-1.png" alt=""></p>
+<p>但是分解以后就会发现有些很有趣的东西， 这些东西是通用的，或者是跨越多个模块的：</p>
+<p><strong>日志</strong>： 对特定的操作输出日志来记录<br><strong>安全</strong>：在执行操作之前进行操作检查<br><strong>性能</strong>：要统计每个方法的执行时间<br><strong>事务</strong>：方法开始之前要开始事务， 结束后要提交或者回滚事务<br>等等….</p>
+<p>这些可以称为是非功能需求， 但他们是多个业务模块都需要的， 是跨越模块的， 把他们放到什么地方呢？</p>
+<p>最简单的办法就是把这些通用模块的接口写好， 让程序员在实现业务模块的时候去调用就可以了，码农嘛，辛苦一下也没什么。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-2.png" alt=""></p>
+<p>这样做看起来没问题， 只是会产生类似这样的代码：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-3.png" alt=""></p>
+<p>这样的代码也实现了功能，但是看起来非常的不爽， 那就是日志，性能，事务 相关的代码几乎要把真正的业务代码给淹没了。</p>
+<p>不仅仅这一个类需要这么干， 其他类都得这么干， 重复代码会非常的多。</p>
+<p>有经验的程序员还好， 新手忘记写这样的非业务代码简直是必然的。</p>
+<h1 id="2-设计模式：模板方法"><a href="#2-设计模式：模板方法" class="headerlink" title="2. 设计模式：模板方法"></a>2. 设计模式：模板方法</h1><p>用设计模式在某些情况下可以部分解决上面的问题，例如著名的<strong>模板方法</strong>：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-4.png" alt=""></p>
+<p>在<strong>父类（BaseCommand）中已经把那些“乱七八糟“的非功能代码都写好了， 只是留了一个口子（抽象方法doBusiness()）让子类去实现。</strong></p>
+<p>子类变的清爽， 只需要关注业务逻辑就可以了。<br>调用也很简单，例如：  </p>
+<blockquote>
+<p>BaseCommand  cmd = …  获得PlaceOrderCommand的实例…<br>cmd.execute();</p>
+</blockquote>
+<p>但是这样方式的巨大缺陷就是父类会定义一切： <strong>要执行哪些非功能代码， 以什么顺序执行等等<br>子类只能无条件接受，完全没有反抗余地。</strong></p>
+<p>如果有个子类， 根本不需要事务， 但是它也没有办法把事务代码去掉。</p>
+<h1 id="3-设计模式：装饰者"><a href="#3-设计模式：装饰者" class="headerlink" title="3. 设计模式：装饰者"></a>3. 设计模式：装饰者</h1><p>如果利用装饰者模式， 针对上面的问题，可以带来更大的灵活性：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-5.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-6.png" alt=""></p>
+<p>现在让这个PlaceOrderCommand 能够打印日志，进行性能统计</p>
+<blockquote>
+<p>Command cmd = new <strong>LoggerDecorator</strong>(<br><span style="opacity:0">asdfas</span>new <strong>PerformanceDecorator</strong>(<br><span style="opacity:0">asdfasdf</span>new <strong>PlaceOrderCommand</strong>()));<br>cmd.execute();</p>
+</blockquote>
+<p>如果PaymentCommand 只需要打印日志，装饰一次就可以了：</p>
+<blockquote>
+<p>Command cmd = new <strong>LoggerDecorator</strong>(<br><span style="opacity:0">asdfas</span>new <strong>PaymentCommand</strong>());<br>cmd.execute();</p>
+</blockquote>
+<p>可以使用任意数量装饰器，还可以以任意次序执行（严格意义上来说是不行的）， 是不是很灵活？ </p>
+<h1 id="4-AOP"><a href="#4-AOP" class="headerlink" title="4. AOP"></a>4. AOP</h1><p>如果仔细思考一下就会发现装饰者模式的不爽之处:<br>(1)  一个处理日志/性能/事务 的类为什么要实现 业务接口（Command）呢?<br>(2) 如果别的业务模块，没有实现Command接口，但是也想利用日志/性能/事务等功能，该怎么办呢？</p>
+<p><strong>最好把日志/安全/事务这样的代码和业务代码完全隔离开来，因为他们的关注点和业务代码的关注点完全不同</strong> ，他们之间应该是正交的，他们之间的关系<br>应该是这样的：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-7.png" alt=""></p>
+<p>如果把这个业务功能看成一层层面包的话， 这些日志/安全/事务 像不像一个个“切面”(Aspect) ？</p>
+<p>如果我们能让这些“切面“能和业务独立，  并且能够非常灵活的“织入”到业务方法中， 那就实现了面向切面编程(AOP)！</p>
+<h1 id="5-实现AOP"><a href="#5-实现AOP" class="headerlink" title="5. 实现AOP"></a>5. 实现AOP</h1><p>现在我们来实现AOP吧， 首先我们得有一个所谓的“切面“类(Aspect)， 这应该是一个普通的java 类 ， 不用实现什么“乱七八糟”的接口。<br>以一个事务类为例：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-8.png" alt=""></p>
+<p>我们想达到的目的只这样的： 对于com.coderising这个包中所有类的execute方法， 在方法调用之前，需要执行Transaction.beginTx()方法， 在调用之后， 需要执行Transaction.commitTx()方法。</p>
+<p>暂时停下脚步分析一下。</p>
+<ul>
+<li><p>“对于com.coderising这个包中所有类的execute方法” ， 用一个时髦的词来描述就是<strong>切入点（PointCut）</strong> , 它可以是一个方法或一组方法（可以通过通配符来支持，你懂的）</p>
+</li>
+<li><p>“在方法调用之前/之后 ， 需要执行xxx” , 用另外一个时髦的词来描述就是<strong>通知（Advice）</strong></p>
+</li>
+</ul>
+<p>码农翻身认为，PointCut,Advice 这些词实在是不直观， 其实Spring的作者们也是这么想的 :  </p>
+<blockquote>
+<p>These terms are not Spring-specific… unfortunately, AOP terminology is not particularly intuitive; however, it would be even more confusing if Spring used its own terminology.</p>
+</blockquote>
+<p>当然，想描述这些规则， xml依然是不二之选：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/f367b0a2-9.png" alt=""></p>
+<p>注意：现在<strong>Transaction这个类和业务类在源代码层次上没有一点关系，完全隔离了。</strong></p>
+<p>隔离是一件好事情， 但是马上给我们带来了大麻烦 。</p>
+<p>Java 是一门静态的强类型语言， 代码一旦写好， 编译成java class 以后 ，可以在运行时通过反射（Reflection）来查看类的信息， 但是想对类进行修改非常困难。 </p>
+<p>而AOP要求的恰恰就是在不改变业务类的源代码（其实大部分情况下你也拿不到）的情况下， 修改业务类的方法, 进行功能的增强，就像上面给所有的业务类增加事务支持。</p>
+<p>为了突破这个限制，大家可以说是费尽心机， 现在基本是有这么几种技术：</p>
+<p>(1) 在编译的时候， 根据<strong>AOP的配置</strong>信息，悄悄的把日志，安全，事务等“切面”代码 和业务类编译到一起去。</p>
+<p>(2) 在运行期，业务类加载以后， 通过<strong>Java动态代理技术</strong>为业务类生产一个代理类， 把“切面”代码放到代理类中，  Java 动态代理要求业务类需要实现接口才行。</p>
+<p>(3) 在运行期， 业务类加载以后， 动态的使用字节码构建一个业务类的子类，将“切面”逻辑加入到子类当中去, <strong>CGLIB</strong>就是这么做的。</p>
+<p>Spring采用的就是(2) +(3) 的方式，限于篇幅，这里不再展开各种技术了， 不管使用哪一种方式， 在运行时，真正干活的“业务类”其实已经不是原来单纯的业务类了， 它们被AOP了 ！</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/f367b0a2-Spring--AOP/" data-id="cite4b4kv00589wtvjwqja3vp" class="article-share-link" data-share="baidu" data-title="【转】Spring 的本质系列(2) -- AOP">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/f367b0a2-Spring--AOP/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java番外篇/">Java番外篇</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/55904a6f-Nexus6-Brush-Android6.0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Nexus6 刷Android6.0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/429f9872-common-download-addresses/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">一些常用的下载地址</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="f367b0a2-Spring--AOP/" data-title="【转】Spring 的本质系列(2) -- AOP" data-url="http://nibnait.com/f367b0a2-Spring--AOP/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

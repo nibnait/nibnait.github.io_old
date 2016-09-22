@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】TCP/IP 之 大明王朝邮差 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513094&amp;amp;idx=1&amp;amp;sn=a2accfc41107ac08d74ec3317995955e&amp;amp;scene=21#wechat_redirect
+关键词：三次握手、超时重传、滑动窗口。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】TCP/IP 之 大明王朝邮差">
+<meta property="og:url" content="http://nibnait.com/035e9060-TCP-IP-Postman/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513094&amp;amp;idx=1&amp;amp;sn=a2accfc41107ac08d74ec3317995955e&amp;amp;scene=21#wechat_redirect
+关键词：三次握手、超时重传、滑动窗口。">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-07-01T02:15:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】TCP/IP 之 大明王朝邮差">
+<meta name="twitter:description" content="原文地址：http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513094&amp;amp;idx=1&amp;amp;sn=a2accfc41107ac08d74ec3317995955e&amp;amp;scene=21#wechat_redirect
+关键词：三次握手、超时重传、滑动窗口。">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-035e9060-TCP-IP-Postman" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/035e9060-TCP-IP-Postman/" class="article-date">
+  <time datetime="2016-05-12T14:56:01.000Z" itemprop="datePublished">2016-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】TCP/IP 之 大明王朝邮差
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513094&amp;idx=1&amp;sn=a2accfc41107ac08d74ec3317995955e&amp;scene=21#wechat_redirect" target="_blank" rel="external">http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513094&amp;idx=1&amp;sn=a2accfc41107ac08d74ec3317995955e&amp;scene=21#wechat_redirect</a></p>
+<p>关键词：<strong>三次握手</strong>、<strong>超时重传</strong>、<strong>滑动窗口</strong>。</p>
+</blockquote>
+<a id="more"></a>
+<p>大明王朝天启四年， 清晨。  </p>
+<p>天色刚蒙蒙亮，我就赶着装满货物的马车来到了南城门， 这里是集中处理货物的地方 ， 一队一队的马车都来到这里， 城头的士兵带着头盔，身披盔甲， 手持长枪， 虎视眈眈的注视这下面的动静。 </p>
+<p>城门口的大棚里乱哄哄的，是一群人围在一起赌钱， 这些家伙都穿着同样的衣服， 前胸和后背写着三个大字  “TCP邮差”</p>
+<p>我知道这就是我要找的人， 他们会帮我把货物发出去。  </p>
+<p>我下了车，在大棚里四处查看， 找到一个无聊的坐着独自喝闷酒的小伙子。</p>
+<p>“邮差小哥 ，帮我把这车货发了呗”</p>
+<p>小伙子懒洋洋的站起来说： “你从哪儿来，要到哪儿而去啊？”</p>
+<p>我赶紧拿出写好的地址说： ”我住在咱们城里北拐街224号， 要发一车货物到内乡县衙“</p>
+<p>“内乡县衙有很多门， 你的货进那个门啊？” 邮差小哥接着问。</p>
+<p>“出发的时候老板给我说了， 发到80号门 。”</p>
+<p>邮差小哥说： “走吧， 咱们到前面去。”</p>
+<p>大棚的前面是一大批开阔地， 可能我们来的早 ，  现在只有我，邮差小哥， 当然，还有我的马车。 </p>
+<p>“你等等， 我先给内乡县衙建立个连接 ”邮差说着， 吹了个口哨， 一匹马跑了过来。</p>
+<p>他拿起毛笔在一张纸写了一封信：<br>“县衙县衙， 我是京城， 我想和你建立连接， 我的序号1024 ， 收到请回话！ ”</p>
+<p>信封上写着：<br>发货地：京城北拐街224号<br>收货地：内乡县衙， 80号门   </p>
+<p>然后把这这个纸放到了马背上的褡裢里， 拍了拍马屁股： “快走吧。”</p>
+<p>过了两个时辰， 那匹马回来了， 邮差掏出了马运回来的那封信， 上面写着：<br>“京城京城，收到了你的信， 你的信里边有个序号是1024，对不对？ 同意建立咱们的连接， 我这边序号是2048”</p>
+<p>邮差喜形于色 ： “ 看看， 连接快要建立了， 我再给他们发一封信就行了”<br>”县衙县衙， 我收到你的确认信了， 也看到了你的序号是2048， 我开始发货了”</p>
+<p>我问他： “这就是连接吗， 我没看见你扯一条线把京城和县衙连起来啊”</p>
+<p>邮差说： “这你就不懂了吧，这就是TCP连接， 是虚拟的，  连接的状态信息并不会在路上保存； 相反， 连接的状态信息是在两端维持的， 也就是在我这里和县衙那里一起维持的。 ”</p>
+<p>“那你们为啥要发三封信呢？ ”</p>
+<p>“这就是三次握手啊， 我给你分析一下啊， 这三次握手主要是为了验证我这边和县衙那边的发信/收信能力没问题， 这样就证明连接是通的， 可以正式发货了。”</p>
+<p><strong>第一次握手</strong>：京城发信，县衙收到了，此时县衙就会明白：京城发信能力和自己的收信能力是没问题的。</p>
+<p><strong>第二次握手</strong>：县衙发信，京城收到了，此时京城就会明白：京城的发信和收信都是好的， 县衙的发信和收信也都是没问题的。 要不然收不到县衙的回信 ， 但是县衙还不知道自己的发信功能如何？所以需要第三次握手：</p>
+<p><strong>第三次握手</strong>：京城发信，县衙收到了，此时京城已经确认，双发的收信，发信都是没问题的，　这次回应的目的只是消除县衙对自己的发信功能和京城的收信功能的担忧而已。　</p>
+<p>说实在的， 我有点晕， 邮差小哥说 ： “你多琢磨琢磨就明白了。” </p>
+<p>我问他： “你这么辛苦的建立连接， 难道不亲自去送货吗？”</p>
+<p>邮差说：“ 我才不去呢！ 本朝新皇登基以来，整天像木匠一样做木工，不理朝政， 导致民不聊生， 大片田地荒芜， 强盗，野兽横行， 早就没有人敢冒着风险去送货了。所以内阁的那帮大臣们就想了个招，修建四通八达的官道， 让马，驴这些牲畜去送货， 即使被老虎吃掉也没啥损失， 天朝还是挺以人为本的。”</p>
+<p>“那这些马怎么知道把我的货送的内乡县衙啊”</p>
+<p>“不用担心， 它们都是训练过的， 会沿着官道走，在每一个每个岔路口朝廷都会修建一个驿站， 马累了可以吃草喝水休息， 更关键的是，每个驿站的衙役会看看我刚才写的信 ，他们知道路， 然后把马领到一个新的正确的官道，继续走， 最终就能到内乡县衙。 对了， 大家给这些驿站起来个别名：路由器”</p>
+<p>“万一马跑丢了， 或者被老虎吃掉，到不了，或者回不来怎么办？”</p>
+<p>“那就是我们TCP邮差要干的事儿了， 你马上就会看到， 我来看看你的货， 哎啊， 你这个柜子太大了， 一匹马驮不走， 得分成小包裹， 一个一个运”</p>
+<p>我没办法， 只好把一件大货物拆开， 分成小包裹。</p>
+<p>“ 给每个包裹编个号吧”  邮差说到。 “这样到了内乡县衙他们就能组装起来，原样恢复了”</p>
+<p>我突然想到一个严重问题：“万一马被强盗抢走了。我这个柜子的一条腿岂不就丢了  ”</p>
+<p>邮差见怪不怪： “没办法， 内阁的大人们说了， 这种情况， 就重新发送那一个包裹。”</p>
+<p>擦， 我心头有一万头羊驼跑过：  这帮大人们真是站着说话不腰疼啊，  万一柜子的腿儿丢了， 我还得重做啊。</p>
+<p>邮差把包裹按编号摆成一列， 1， 2， 3， …… 10 ，一共10个包裹。 </p>
+<p>“按规定我们每次最多发3个包裹，按序号发， 先发 1， 2， 3号包裹” 邮差说着叫来3匹马， 装上货，马一溜烟的跑掉了。 </p>
+<p>我在那里提心吊胆的等着，生怕一个包裹丢了。 </p>
+<p>可是怎么知道包裹是不是到了县衙了呢。 </p>
+<p>邮差似乎看出了我的心思， 从怀里掏出一个沙漏说： 如果漏完了， 县衙还没给咱们确认， 那就是丢了， 只有重发了。 </p>
+<p>过了一个时辰， 我期盼的县衙的马终于来了，  里边的信里说： 1号包裹收到了。 </p>
+<p>“好了” 邮差说， “县衙确认收到了 1号包裹，  咱们可以再发一个了”， 说着叫来一匹马， 把第4号包裹发了出去。 </p>
+<p>我现在有点理解了， 邮差的做法是每次只保证有3个包裹发出去并且没有确认 </p>
+<p>又过了一会， 县衙一下子来了3匹马， 带来了2,3,4号包裹的确认。 </p>
+<p>邮差说： “ 看来你的运气还不错， 我在把5,6,7 号发出去“  说着他把沙漏掉了个个， 重新开始计时。</p>
+<p>5号包裹的确认很快来了，  邮差又把8号发了出去， 这样已经发送但是没有确认的包裹还是三个。 </p>
+<p>现在6,7,8号包裹都发出去了， 可是6号包裹的确认迟迟不来， 我心急如焚。<br>正在此时， 沙漏漏完了， 我不安的向邮差看去。  </p>
+<p>他倒是满不在乎：“ 哎呀， <strong>超时</strong>了，有可能是运送6号包裹的马被老虎吃了， 县衙没收到”</p>
+<p>“那怎么办啊” 我焦急的问。 </p>
+<p>“我们只好从6号包裹开始<strong>重新发送</strong>了， 6号包裹恰好是柜子的一条腿儿， 回去给你老板说说， 再做做个柜子腿儿吧， 一定要保证和之前发出去的一模一样。”</p>
+<p>我问他： “那7,8号包裹呢？  县衙收到没有？”</p>
+<p>“我们现在还不知道，如果收到了， 他们会暂时存下来。 如果没收到， 那还得像6号包裹一样，继续重发。”</p>
+<p>我的忍耐力到了极限， 真想跳起来揍邮差一顿。 </p>
+<p>冷静下来， 我想了想说：“不对，你为什么一下发了3个包裹， 你不能发一个等着确认一个吗？  我要告你去 。”</p>
+<p>邮差说： “随便你了， 反正你是告不赢的， 这是内阁首辅大人确定的， 我们用的叫<strong>滑动窗口</strong>协议， 如果窗口N=1 ,  即发一个等着确认一个， 那样就太慢了， 我这个邮差也不能一直被你占用，  我们把N的值设大一点， 例如N=3, 就是为了能够像流水线那样做事,   一边发包裹， 一边收确认， 这样快一点。”</p>
+<p>没办法，只好回去找老板做柜子腿儿， 这耽误了很多时间。 </p>
+<p>邮差把6号包裹又发了出去， 再次重新计时。 </p>
+<p>6号包裹的确认还是没有收到！    7号的确认也没收到，  但是8号包裹的确认先收到了！</p>
+<p>邮差说： “恩， 不错，6,7号的确认包裹估计是在路上丢了， 没关系， 只要县衙说收到了8号包裹， 暗含的意思就是 6， 7 号都收到了。 要不然他们不会发8号的确认。”</p>
+<p>接下来就发9,10号包裹， 这次还行， 总算没丢， 终于把整个柜子全发出去了。 </p>
+<p>内乡县衙那边也把柜子给组装了起来。 我的任务总算完成了。 </p>
+<p>后来我得知， 县衙其实是收到了第6号包裹，只是他们的发给京城的确认包裹在路上给弄丢了， 我们没收到， 导致我们重新发了一份。  </p>
+<p>我算是明白了这所谓的TCP, 无非就是在那些不可靠马匹运输的基础上建立一个可靠的发送办法， 基本上就是失败重发， 受苦的还是我们这些底层老百姓。 </p>
+<p>我给邮差付了2两银子作为费用 ， 拉着马车，头也不回的走了。 </p>
+<p>只听到邮差在后边喊：“ 欢迎再来， 内阁首辅正在研究新的协议呢， 下次一定要来试试啊。”</p>
+<p>我没理他， 因为我再也不想来到这个鬼地方了！</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/035e9060-TCP-IP-Postman/" data-id="cite4b4fa00039wtvy1w5mnsn" class="article-share-link" data-share="baidu" data-title="【转】TCP/IP 之 大明王朝邮差">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/035e9060-TCP-IP-Postman/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/6dbb87cc-Java-the-birth-of-an-empire/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          【转】Java： 一个帝国的诞生
+        
+      </div>
+    </a>
+  
+  
+    <a href="/64e3e7b7-MySQL-StudyNote/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">MySQL-学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="035e9060-TCP-IP-Postman/" data-title="【转】TCP/IP 之 大明王朝邮差" data-url="http://nibnait.com/035e9060-TCP-IP-Postman/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

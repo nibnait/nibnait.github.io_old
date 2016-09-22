@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】Spring 的本质系列(1) -- 依赖注入 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513179&amp;amp;idx=1&amp;amp;sn=772226a5be436a0d08197c335ddb52b8&amp;amp;scene=0&amp;amp;pass_ticket=hetuWo8pXY0relnuIcQXVKZFV9FWXXUvWFf%2Fcrr3OYUPL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】Spring 的本质系列(1) -- 依赖注入">
+<meta property="og:url" content="http://nibnait.com/c1b0daa6-Spring--Dependency-Injection/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513179&amp;amp;idx=1&amp;amp;sn=772226a5be436a0d08197c335ddb52b8&amp;amp;scene=0&amp;amp;pass_ticket=hetuWo8pXY0relnuIcQXVKZFV9FWXXUvWFf%2Fcrr3OYUPL">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-1.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-2.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-4.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-5.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-6.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-7.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-8.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-06-27T12:54:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】Spring 的本质系列(1) -- 依赖注入">
+<meta name="twitter:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513179&amp;amp;idx=1&amp;amp;sn=772226a5be436a0d08197c335ddb52b8&amp;amp;scene=0&amp;amp;pass_ticket=hetuWo8pXY0relnuIcQXVKZFV9FWXXUvWFf%2Fcrr3OYUPL">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-1.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-c1b0daa6-Spring--Dependency-Injection" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/c1b0daa6-Spring--Dependency-Injection/" class="article-date">
+  <time datetime="2016-06-25T14:54:04.000Z" itemprop="datePublished">2016-06-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】Spring 的本质系列(1) -- 依赖注入
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513179&amp;idx=1&amp;sn=772226a5be436a0d08197c335ddb52b8&amp;scene=0&amp;pass_ticket=hetuWo8pXY0relnuIcQXVKZFV9FWXXUvWFf%2Fcrr3OYUPLy%2FU0hVJ6NYIR6wCsIFV" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513179&amp;idx=1&amp;sn=772226a5be436a0d08197c335ddb52b8&amp;scene=0&amp;pass_ticket=hetuWo8pXY0relnuIcQXVKZFV9FWXXUvWFf%2Fcrr3OYUPLy%2FU0hVJ6NYIR6wCsIFV</a></p>
+</blockquote>
+<p>相关阅读：<a href="http://www.importnew.com/14751.html" target="_blank" rel="external">Spring的IOC原理</a></p>
+<a id="more"></a>
+<h1 id="1-对象的创建"><a href="#1-对象的创建" class="headerlink" title="1. 对象的创建"></a>1. 对象的创建</h1><p>面向对象的编程语言是用类(Class)来对现实世界进行抽象， 在运行时这些类会生成对象(Object)。 </p>
+<p>当然，单独的一个或几个对象根本没办法完成复杂的业务， 实际的系统是由千千万万个对象组成的， 这些对象需要互相协作才能干活，例如对象A调用对象B的方法，那必然会提出一个问题：对象A怎么才能获得对象B的引用呢？</p>
+<p>最简单的办法无非是： 当对象A需要使用对象B的时候， <strong>把它给new 出来</strong> ，这也是最常用的办法， java 不就是这么做的？例如：  </p>
+<p>Apple a = new Apple();</p>
+<p>后来业务变复杂了， 抽象出了一个水果(Fruit)的类， 创建对象会变成这个样子：</p>
+<p>Fruit f1 = new Apple();<br>Fruit f2 = new Banana();<br>Fruit f3 = ……</p>
+<p>很自然的，类似下面的代码就会出现：<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-1.png" alt=""></p>
+<p>这样的代码如果散落在各处，维护起来将会痛苦不堪， 例如你新加一个水果的类型Orange, 那得找到系统中所有的这些创建Fruit的地方，进行修改， 这绝对是一场噩梦。</p>
+<p>解决办法也很简单， 前辈们早就总结好了：<a href="http://nibnait.com/7d37b1c4-Factory-Pattern/">工厂模式</a></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-2.png" alt=""></p>
+<p>工厂模式，以及其他模式像抽象工厂， Builder模式提供的都是创建对象的方法。</p>
+<p>这背后体现的都是“<strong>封装变化</strong>”的思想。</p>
+<p>这些模式只是一些最佳实践而已： 起了一个名称、描述一下解决的问题、使用的范围和场景，码农们在项目中还得自己去编码实现他们。</p>
+<h1 id="2-解除依赖"><a href="#2-解除依赖" class="headerlink" title="2. 解除依赖"></a>2. 解除依赖</h1><p>我们再来看一个稍微复杂一点， 更加贴近实际项目的例子：</p>
+<p>一个订单处理类，它会被定时调用：  查询数据库中订单的处理情况， 必要时给下订单的用户发信。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-3.png" alt=""></p>
+<p>看起来也没什么难度， 需要注意的是很多类一起协作了， 尤其是OrderProcessor , 它依赖于<br>OrderService 和 EmailService这两个服务，它获取依赖的方式就是通过<strong>单例方法</strong>。</p>
+<p>如果你想对这个process方法进行单元测试–<strong>这也是很多优秀的团队要求的</strong>– 麻烦就来了。 </p>
+<p>首先OrderService 确实会从真正的数据库中取得Order信息，你需要确保数据库中有数据， 数据库连接没问题，实际上如果数据库连接Container（例如Tomcat）管理的， 你没有Tomcat很难建立数据库连接。</p>
+<p>其次这个EmailService 真的会对外发邮件， 你可不想对真正的用户发测试邮件，当然你可以修改数据库，把邮件地址改成假的，但那样很麻烦， 并且EmailService 会抛出一堆错误来，很不爽。</p>
+<p>所有的这些障碍， 最终会导致脆弱的单元测试： <strong>速度慢， 不可重复，需要手工干预，不能独立运行。</strong></p>
+<p>想克服这些障碍， 一个可行的办法就是不在方法中直接调用OrderService和EmailService的getInstance()方法， 而是把他们通过setter方法传进来。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-4.png" alt=""></p>
+<p>通过这种方式，你的单元测试就可以构造一个假的OrderService 和假的EmailService 了。</p>
+<p>例如OrderService 的冒牌货可以是MockOrderService , 它可以返回你想要的任何Order 对象， 而不是从数据库取。</p>
+<p>MockEmailService 也不会真的发邮件， 而是把代码中试图发的邮件保存下来， 测试程序可以检查是否正确。</p>
+<p>你的测试代码可能是这样的：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-5.png" alt=""></p>
+<p>当然， 有经验的你马上就会意识到： 需要把OrderService 和 EmailService 变成 接口或者抽象类， 这样才可以把Mock对象传进来。 </p>
+<p>这其实也遵循了面向对象编程的另外一个要求： <strong>对接口编程， 而不是对实现编程</strong>。</p>
+<h1 id="3-Spring-依赖注入"><a href="#3-Spring-依赖注入" class="headerlink" title="3. Spring 依赖注入"></a>3. Spring 依赖注入</h1><p>啰啰嗦嗦说了这么多， 快要和Spring扯上关系了。</p>
+<p>上面的代码其实就是实现了一个依赖的注入，把两个冒牌货注入到业务类中(通过set方法)， 这个注入的过程是在一个测试类中通过代码完成的。</p>
+<p>既然能把冒牌货注入进去，  那毫无疑问，肯定也能把一个正经的类安插进去， 因为setter 方法接受的是接口，而不是具体类。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-6.png" alt=""></p>
+<p>用这种方式来处理对象之间的依赖， 会强迫你对接口编程， 好处显而易见。 </p>
+<p>随着系统复杂度的增长， 这样的代码会越来越多， 最后也会变得难于维护。 </p>
+<p>能不能把各个类之间的依赖关系统一维护呢？<br>能不能把系统做的更加灵活一点，用声明的方式而不是用代码的方式来描述依赖关系呢？</p>
+<p>肯定可以， 在Java 世界里，如果想描述各种逻辑关系， XML是不二之选：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-7.png" alt=""></p>
+<p>公众号“码农翻身”友情提示：我们熟悉的bean 又出现了， 想了解历史的可以看下文章<a href="http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513115&amp;idx=1&amp;sn=da30cf3d3f163d478748fcdf721b6414&amp;scene=21#wechat_redirect" target="_blank" rel="external">《Java帝国之Java bean (上)》</a> 和<a href="http://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513118&amp;idx=1&amp;sn=487fefb8fa7efd59de6f37043eb21799&amp;scene=21#wechat_redirect" target="_blank" rel="external">《Java帝国之Java bean (下)》</a></p>
+<p>这个xml 挺容易理解的， 但是仅仅有它还不够， 还缺一个解析器（假设叫做XmlAppContext）来解析，处理这个文件，基本过程是：</p>
+<ol>
+<li><p>解析xml, 获取各种元素</p>
+</li>
+<li><p>通过<strong>Java反射</strong>把各个bean 的实例创建起来： com.coderising.OrderProcessor   , OrderServiceImpl, EmailServiceImpl. </p>
+</li>
+<li><p>还是通过<strong>Java反射</strong>调用OrderProcessor的两个方法：setOrderService(….)  和 setEmailService(…) 把orderService , emailService 实例 注入进去。</p>
+</li>
+</ol>
+<p>应用程序使用起来就简单了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">XmlAppContext ctx = new XmlAppContext(&quot;c:\\bean.xml&quot;);</div><div class="line"></div><div class="line">OrderProcessor op = (OrderProcessor) ctx.getBean(&quot;order-processor&quot;);</div><div class="line"></div><div class="line">op.process();</div></pre></td></tr></table></figure>
+<p>其实Spring的处理方式和上面说的非常类似， 当然Spring 处理了更多的细节，例如不仅仅是setter方法注入， 还可以构造函数注入，init 方法， destroy方法等等， 基本思想是一致的。</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/c1b0daa6-8.png" alt=""></p>
+<p><strong>既然对象的创建过程和装配过程都是Spring做的， 那Spring 在这个过程中就可以玩很多把戏了， 比如对你的业务类做点字节码级别的增强， 搞点AOP什么的， 这都不在话下了。 </strong></p>
+<h1 id="4-IoC-vs-DI"><a href="#4-IoC-vs-DI" class="headerlink" title="4. IoC vs DI"></a>4. IoC vs DI</h1><p>“不要给我们打电话，我们会打给你的(don‘t call us, we‘ll call you)”这是著名的好莱坞原则。</p>
+<p>在好莱坞，把简历递交给演艺公司后就只有回家等待。由演艺公司对整个娱乐项目完全控制，演员只能被动式的接受公司的差使,在需要的环节中，完成自己的演出。</p>
+<p>这和软件开发有一定的相似性， 演员们就像一个个Java Object, 最早的时候自己去创建自己所依赖的对象，   有了演艺公司（Spring容器）的介入，所有的依赖关系都是演艺公司搞定的， 于是控制就翻转了<br>Inversion of Control, 简称IoC。 </p>
+<p>但是IoC这个词不能让人更加直观和清晰的理解背后所代表的含义， 于是Martin Flower先生就创造了一个新词 : 依赖注入 (Dependency Injection，简称DI),  是不是更加贴切一点？</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/c1b0daa6-Spring--Dependency-Injection/" data-id="cite4b4k0004c9wtvxl636580" class="article-share-link" data-share="baidu" data-title="【转】Spring 的本质系列(1) -- 依赖注入">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/c1b0daa6-Spring--Dependency-Injection/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java番外篇/">Java番外篇</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/429f9872-common-download-addresses/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          一些常用的下载地址
+        
+      </div>
+    </a>
+  
+  
+    <a href="/6d7d656b-im-a-router/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">【转】我是一个路由器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="c1b0daa6-Spring--Dependency-Injection/" data-title="【转】Spring 的本质系列(1) -- 依赖注入" data-url="http://nibnait.com/c1b0daa6-Spring--Dependency-Injection/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

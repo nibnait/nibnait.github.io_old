@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【转】我是一个网卡 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513160&amp;amp;idx=1&amp;amp;sn=d938db4f1a2d62514b57e92fd8d3d749&amp;amp;scene=1&amp;amp;srcid=06274FU4DOq8Xaz86knVlkxe&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转】我是一个网卡">
+<meta property="og:url" content="http://nibnait.com/92ac9843-im-a-NIC/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513160&amp;amp;idx=1&amp;amp;sn=d938db4f1a2d62514b57e92fd8d3d749&amp;amp;scene=1&amp;amp;srcid=06274FU4DOq8Xaz86knVlkxe&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-1.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-2.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png">
+<meta property="og:updated_time" content="2016-06-27T17:47:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转】我是一个网卡">
+<meta name="twitter:description" content="原文地址：https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;amp;mid=2665513160&amp;amp;idx=1&amp;amp;sn=d938db4f1a2d62514b57e92fd8d3d749&amp;amp;scene=1&amp;amp;srcid=06274FU4DOq8Xaz86knVlkxe&amp;amp;pass_ticket=QrfnD%2BuaEg">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-1.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-92ac9843-im-a-NIC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/92ac9843-im-a-NIC/" class="article-date">
+  <time datetime="2016-06-15T17:37:34.000Z" itemprop="datePublished">2016-06-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【转】我是一个网卡
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>原文地址：<a href="https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513160&amp;idx=1&amp;sn=d938db4f1a2d62514b57e92fd8d3d749&amp;scene=1&amp;srcid=06274FU4DOq8Xaz86knVlkxe&amp;pass_ticket=QrfnD%2BuaEgpuqOnN6%2FGXOi567jtFjIp2BC3s%2FUjmZiv8wSD%2FZ5ZT%2BQLisdjZLtci#rd0" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MzAxOTc0NzExNg==&amp;mid=2665513160&amp;idx=1&amp;sn=d938db4f1a2d62514b57e92fd8d3d749&amp;scene=1&amp;srcid=06274FU4DOq8Xaz86knVlkxe&amp;pass_ticket=QrfnD%2BuaEgpuqOnN6%2FGXOi567jtFjIp2BC3s%2FUjmZiv8wSD%2FZ5ZT%2BQLisdjZLtci#rd</a></p>
+</blockquote>
+<a id="more"></a>
+<p>我出生在深圳的一家工厂，然后飘洋过海来到美国，被安装到一个电脑里， 然后这个电脑又漂洋过海， 被运到了中国。</p>
+<p>我知道我的使命就是传递信件，但有一个前提：我需要知道对方的地址才行，其实我们网卡都有一个全球唯一的地址，这个地址一出生就确定了，就像你们人类的身份证一样，终生不变。 无论我走到哪里，我都拥有这个唯一的标志：11:27:F5: 8A:79:54 ，  挺长的是吧，你们人类把它叫做MAC地址，  简单起见， 你可以叫我 “TP-Link 7954”</p>
+<p>刚开始的时候我非常孤独，因为这台电脑虽然经常开机，但却不联网，真不知道主人是怎么想的！</p>
+<p>不上网就没人来找我发信，不发信我也就没什么价值，也没人搭理我，我整天听着CPU阿甘和金士顿内存在那里喋喋不休的聊天，真是烦死了。</p>
+<p>只是这两人都记不住对方，每次重启都像是第一次相识，实在是太搞笑了。</p>
+<h1 id="1-DHCP"><a href="#1-DHCP" class="headerlink" title="1. DHCP"></a>1. DHCP</h1><p>在我入住机箱30天以后，音箱向大家报告说：“主人终于决定要上网了”  这绝对是个重磅新闻！ </p>
+<p>我很兴奋，大家也很兴奋，早就听说外边的世界很精彩了。</p>
+<p>一天晚上，只听到“咔嗒”一声， 一个RJ45的网线插头便和我亲密接触了。</p>
+<p>网线的那头传来了陌生而熟悉的声音，我的潜意识告诉我，那是交换机在转发信件 。</p>
+<p>CPU阿甘看到了这种情况，也不和金士顿内存聊天了，他对着我大叫一声： TP-Link 你在等啥，赶紧上网啊。</p>
+<p>这是他第一次和我说话。</p>
+<p>操作系统老大是见过世面的，他镇定的说： “心急吃不了热豆腐， 我们得先搞一个IP地址才行。 这需要用到DHCP(动态主机配置协议)”</p>
+<p>阿甘说： “谁那里有IP地址啊？”</p>
+<p>“这个网络里应该有DHCP 服务器，可以动态的分配地址， 我们可以发个信广播下 ” 老大接着说  “ 阿甘，你和金士顿赶紧写一封信：”</p>
+<p>收件人  ： 255.255.255.255  : 67<br>发件人  ： 0.0.0.0   ：68<br>内容： 我想租用一个Ip地址， 谁有啊？</p>
+<p>（公众号“码农翻身”注： 这里我做了简化， 实际上这里首先是一个应用层的DHCP发现报文， 然后被一个UDP的报文封装，然后再被一个IP的数据报封装。形象化一点如下图所示）</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-1.png" alt=""></p>
+<p>阿甘傻乎乎的， 也不问为什么收件人和发件人这么奇怪， 只是飞快的按老大的指示写信， 信马上写好了，交到我的手里。 </p>
+<p>“给你， TP-Link 7954， 赶紧发出去吧”。  </p>
+<p>我对外发信是有原则的： 我工作在数据链路层， 必须得知道对方的MAC地址才能发信，   如果不知道， 我就对外广播， 那就是所有的电脑都会收到。</p>
+<p>这封信显然就是要广播的，因为到目前为止， 我们还是网络大海中的一个孤岛， 和外界没有任何联系， 我还不知道任何其他电脑的MAC地址。 </p>
+<p>按照规定，我又把阿甘写的信封装了一下， 装到另外一个信封里， 只有这样，我最重要的伙伴交换机才能看懂。<br>目的地： FF:FF:FF:FF:FF:FF　（广播到同一子网内的所有电脑）<br>发件人： 11:27:F5:8A:79:54  (就是我自己了！)  </p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-2.png" alt=""></p>
+<p>我把它通过网线发给了交换机。  交换机看到FF:FF:FF:FF:FF:FF， 立刻转发给了所有连到交换机的设备。</p>
+<p>如同老大所料， 这个局域网里确实有DHCP服务器， 还不止一个！因为没有多久，  交换机转来两封信， 我拆开其中一封， 里边写着：</p>
+<p>“我是DHCP服务器192.168.1.1  ， 我这里有个空闲的IP　192.168.1.2，　你租不租？”</p>
+<p>另外一封信也差不多， 是另外一个DHCP服务器发来的，提供了另外一个IP地址。</p>
+<p>CPU阿甘迫不及待了： “看来我们很受欢迎啊，这么多人愿意给我们IP,  老大， 快抢一个吧。 ”</p>
+<p>操作系统老大说： 好， 我们要这个192.168.1.2吧， 再写一封信：<br>“你好，服务器192.168.1.1 , 我们就要这个IP  192.168.1.2了”</p>
+<p>我又把这封信广播出去， 看来我们所处的网络非常快， 确认的回信眨眼间就到：<br>“这是一个确认信， IP 192.168.1.2 给你了。 网关路由器是192.168.1.1 , DNS服务器的地址是 202.102.224.69”</p>
+<p>金士顿内存说： “不容易啊， 终于搞定一个IP 了， 我把它记下来。 ”</p>
+<p>操作系统老大说： “把所有信息都记下来， 接下来很快就会用到”<br>我们的IP : 192.168.1.2<br>网关路由器：  192.168.1.1<br>DNS服务器： 202.102.224.69  </p>
+<p>阿甘说：“ 要是重启了， 我们是不是要这么重来一遍？ ”</p>
+<p>“阿甘， 你现在越来越聪明了， 确实是这样， 除非主人手动的给我们配置IP地址，网关， DNS ， 但是那样很烦，容易出错，  所以一般情况下， 主人都是依赖我们自动的去用DHCP搞定一个IP 。  ”</p>
+<p>经过这一番折腾， 我也初步了解了我们所在的网络结构：</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/92ac9843-3.png" alt=""></p>
+<h1 id="2-DNS和ARP"><a href="#2-DNS和ARP" class="headerlink" title="2. DNS和ARP"></a>2. DNS和ARP</h1><p>搞定了IP地址， 大家都喜气洋洋。</p>
+<p>我们赶紧把浏览器村的老IE叫来， 让它访问一下著名的google网站。</p>
+<p>老IE说： “你们还不知道？  google在中国被屏蔽了， 访问不了，  要不访问百度吧。 ”</p>
+<p>我说： “都行， 我们先访问一下试试。 ”</p>
+<p>老IE说： ”百度的域名是www.baidu.com, 你们给我查查它对应的IP地址呗！”</p>
+<p>阿甘说： “上个网这么麻烦， 这么多地址要查 ”</p>
+<p>“是啊， 网络世界的规矩就是这样 ，想要互联， 我们得有IP地址， 也得知道对方的IP地址， 现在只知道域名www.baidu.com , 我们得给他翻译成IP才行， 阿甘你准备一个DNS查询吧  ” 老大说</p>
+<p>CPU阿甘遵照指示，先向金士顿内存问了DNS服务器的地址， 然后写了这么一封信， 交给我<br>发件人： 192.168.1.2    (我们刚刚搞定的IP)<br>收件人： 202.102.224.69   (DNS服务器)<br>内容：  哥们， 给我查查www.baidu.com 的IP地址吧  </p>
+<p>“但是这封信发给谁呢， 我需要知道对方MAC地址啊， 总不成还是对外广播吧。“ 我心里想。</p>
+<p>操作系统老大看出了我的疑虑， 解释说： “DNS服务器不在我们的局域网内，  我们要把这个信发给 网关路由器 ， 他会想办法转给 DNS服务器的。 ”</p>
+<p>我说： “可是我不知道网关路由器的MAC地址啊”</p>
+<p>金士顿内存说： “别急， 我查查之前我们存下来没有， 我靠， 刚才那个DHCP服务器（192.168.1.1）也是网关服务器, 他怎么没把MAC地址顺便发过来啊！”</p>
+<p>CPU阿甘急了： “TP-LINK7954, 你是怎么干活的， 怎么非得要MAC地址， 直接用IP地址不行吗？”</p>
+<p>我回答说： “没办法， 这是规定， 你不知道网络是分层的吗？　 我只工作在数据链路层， 就得用MAC地址。   另外网络多种多样， 可不仅仅是TCP/IP , 我要是只用IP地址， 那其他网络怎么工作？”</p>
+<p>操作系统老大说：　“我记得好像有个叫ARP东西， 可以通过广播查询一个IP地址对应的MAC地址， 你试试”</p>
+<p>其实我也想起来了， 这个ARP叫地址解析协议，  我可以把下面的消息广播出去， 这个子网内的所有机器都会收到， 网关路由器也不例外， 他收到以后，一看是查询自己的MAC地址，  就会创建一个ARP的应答。</p>
+<p>收件人： FF:FF:FF:FF:FF:FF　（同一子网内的所有电脑）<br>发件人： 11:27:F5:8A:79:54  (就是我自己了！)<br>内容：呼叫网关路由器（192.168.1.1)， 请问你的MAC地址是什么？  </p>
+<p>过了一会， ARP应答果然来了， 我们看到了网关路由器的MAC地址： 88-25-93-79-E0-C8</p>
+<p>我告诉金士顿内存：  “赶紧记下来，下次咱就不用再查询了”<br>192.168.1.1    &lt;–&gt; 88-25-93-79-E0-C8</p>
+<p>有了网关路由器的MAC地址， 剩下的事情就好办了， 我只需要把之前准备好的DNS查询发给网关路由器即可。</p>
+<p>阿甘好奇问我：“ 你只把这个信发到网关路由器， 剩下的事就不管了？ ”</p>
+<p>我没声好气的回答它说： “那当然了， 我只能管局域网的事情， 出了局域网， 那就是路由器的事情了， 路由器能抽取这个DNS查询的数据报， 看到收件人是202.102.224.69  (DNS服务器)， 自然可以转发出去， 我们完全不用担心。”</p>
+<p>我们等了一会，  DNS服务器很快就返回了www.baidu.com的IP : 115.239.211.112</p>
+<p>金士顿内存说： “我记下来了， 上网看来一点都不好玩啊， 这么费劲。 ”</p>
+<p>老IE 说： “好玩的在后面呢， 现在所有的东西都齐活了， 开工 ”</p>
+<p>老IE开始创建TCP连接， 然后通过TCP 发送HTT GET请求，  轻轻松松的把百度的主页给取了下来，展示了出来。</p>
+<p>大家第一次看到外边的世界， 激动万分。</p>
+<p>当然还是我最忙， 因为老IE的所有信件都需要我去发送和接收。</p>
+<h1 id="3-尾声"><a href="#3-尾声" class="headerlink" title="3. 尾声"></a>3. 尾声</h1><p>这几个月以来我都是电脑里的最忙碌的人， 一旦可以上网， 大家都上瘾了， 浏览网页，刷微博， 看视频， 玩游戏， 每天把我累的要死。</p>
+<p>日子就这么一天天过去，  有一天， 大家发现主人把一个新家伙通过USB接口插到了电脑上， 然后顺手拔掉了网线 ！</p>
+<p>我失去了和交换机的联系 ， 无法联网了， 难道我们电脑又要成为一个孤岛了吗？</p>
+<p>老IE还正在访问一个博客网站呢， 一下子就断了。</p>
+<p>不过奇怪的是， CPU阿甘， 金士顿内存， 操作系统老大 竟然都围着新来的家伙重新玩起了DHCP, DNS , ARP , 并且连上网了， 所有的信件都由这个新家伙来传递。</p>
+<p>我偷偷的问老IE   :“ 这是怎么回事？ ”</p>
+<p>老IE说： “看来你已经失宠了， 新来的家伙叫无线网卡！”</p>
+<p>（刘欣注： 这篇文章其实来源于《计算机网络：自顶向下的方法》第5章的一个例子，我相当于又重新解读了一下。）</p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/coderising.png" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/92ac9843-im-a-NIC/" data-id="cite4b4jh003b9wtvjyqawufg" class="article-share-link" data-share="baidu" data-title="【转】我是一个网卡">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/92ac9843-im-a-NIC/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/转载/">转载</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/geektools4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          GeekTools4-一些好玩的安卓应用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/7d37b1c4-Factory-Pattern/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">工厂模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="92ac9843-im-a-NIC/" data-title="【转】我是一个网卡" data-url="http://nibnait.com/92ac9843-im-a-NIC/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

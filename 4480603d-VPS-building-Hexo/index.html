@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>将Hexo部署到vps上 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考资料：
+
+WikiLibrary | 在VPS上搭建hexo博客，利用git更新
+VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）
+在云服务器上搭建HEXO博客环境
+Linux系统 - 源码编译安装Nginx
+Centos下 Nginx安装与配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将Hexo部署到vps上">
+<meta property="og:url" content="http://nibnait.com/4480603d-VPS-building-Hexo/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="参考资料：
+
+WikiLibrary | 在VPS上搭建hexo博客，利用git更新
+VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）
+在云服务器上搭建HEXO博客环境
+Linux系统 - 源码编译安装Nginx
+Centos下 Nginx安装与配置">
+<meta property="og:updated_time" content="2016-06-17T11:14:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="将Hexo部署到vps上">
+<meta name="twitter:description" content="参考资料：
+
+WikiLibrary | 在VPS上搭建hexo博客，利用git更新
+VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）
+在云服务器上搭建HEXO博客环境
+Linux系统 - 源码编译安装Nginx
+Centos下 Nginx安装与配置">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-4480603d-VPS-building-Hexo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/4480603d-VPS-building-Hexo/" class="article-date">
+  <time datetime="2016-06-11T08:57:08.000Z" itemprop="datePublished">2016-06-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具配置笔记/">工具配置笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      将Hexo部署到vps上
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>参考资料：</p>
+<ul>
+<li><a href="http://tiktoking.github.io/2016/01/26/hexo/#" target="_blank" rel="external">WikiLibrary | 在VPS上搭建hexo博客，利用git更新</a></li>
+<li><a href="http://www.hansoncoder.com/2016/03/02/VPS-building-Hexo/" target="_blank" rel="external">VPS(CentOS)搭建Hexo博客与Git Hooks更新（小白篇）</a></li>
+<li><a href="http://hejun.me/2015/01/05/deploy-hexo-on-cloud/" target="_blank" rel="external">在云服务器上搭建HEXO博客环境</a></li>
+<li><a href="http://www.cnblogs.com/zhoulf/archive/2013/02/09/2909653.html" target="_blank" rel="external">Linux系统 - 源码编译安装Nginx</a></li>
+<li><a href="http://www.jianshu.com/p/d5114a2a2052" target="_blank" rel="external">Centos下 Nginx安装与配置</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><p>在本地生成静态文件，把静态文件部署到VPS上，用Nginx直接做Web服务，由于hexo支持git的部署方式，从而可以实现从本地更新博客，方便快捷。</p>
+<h1 id="搭建流程"><a href="#搭建流程" class="headerlink" title="搭建流程"></a>搭建流程</h1><h2 id="1-本机安装Hexo"><a href="#1-本机安装Hexo" class="headerlink" title="1. 本机安装Hexo"></a>1. 本机安装Hexo</h2><blockquote>
+<p>参见<a href="http://nibnait.com/9751cae7-Hello-World/">从零开始搭建Hexo静态博客</a></p>
+</blockquote>
+<h2 id="2-VPS上的操作"><a href="#2-VPS上的操作" class="headerlink" title="2. VPS上的操作"></a>2. VPS上的操作</h2><p>我的vps是在<a href="https://www.vultr.com/" target="_blank" rel="external">VULTR</a>上买的日本主机。CentOS 7 x64</p>
+<h3 id="安装一些基本软件"><a href="#安装一些基本软件" class="headerlink" title="安装一些基本软件"></a>安装一些基本软件</h3><ul>
+<li>yum update &amp;&amp; apt-get upgrade -y    #更新内核</li>
+<li>yum install git -core</li>
+<li>yum install gcc</li>
+<li>yum install gcc-c++</li>
+<li>yum install vim</li>
+<li>yum install httpd</li>
+</ul>
+<h3 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h3><p><a href="http://www.cnblogs.com/zhoulf/archive/2013/02/09/2909653.html" target="_blank" rel="external">http://www.cnblogs.com/zhoulf/archive/2013/02/09/2909653.html</a></p>
+<blockquote>
+<ul>
+<li>cd /usr/local</li>
+</ul>
+</blockquote>
+<ol>
+<li><p>安装OpenSSL</p>
+<ul>
+<li><p>wget <a href="https://www.openssl.org/source/openssl-1.0.2h.tar.gz" target="_blank" rel="external">https://www.openssl.org/source/openssl-1.0.2h.tar.gz</a></p>
+</li>
+<li><p>tar -zxvf openssl-1.0.2h.tar.gz</p>
+</li>
+<li>cd openssl-1.0.2h</li>
+<li>./config –prefix=/usr/local/openssl –openssldir=/usr/local/openssl/conf</li>
+<li>make &amp;&amp; make install</li>
+<li>/usr/local/openssl/bin/openssl version -a </li>
+</ul>
+</li>
+</ol>
+<ol>
+<li><p>安装PERC</p>
+<ul>
+<li><p>wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</p>
+</li>
+<li><p>tar -zxvf pcre-8.37.tar.gz</p>
+</li>
+<li>cd pcre-8.37</li>
+<li>./configure –prefix=/usr/local/pcre/</li>
+<li>make &amp;&amp; make install</li>
+</ul>
+</li>
+<li><p>安装zlib</p>
+<ul>
+<li><p>wget <a href="http://prdownloads.sourceforge.net/libpng/zlib-1.2.8.tar.gz?download" target="_blank" rel="external">http://prdownloads.sourceforge.net/libpng/zlib-1.2.8.tar.gz?download</a></p>
+</li>
+<li><p>tar -zxvf zlib-1.2.8.tar.gz</p>
+</li>
+<li>cd zlib-1.2.8</li>
+<li>./configure –prefix=/usr/local/zlib/</li>
+<li>make &amp;&amp; make install</li>
+</ul>
+</li>
+<li><p>安装Nginx</p>
+<ul>
+<li>wget <a href="http://nginx.org/download/nginx-1.9.0.tar.gz" target="_blank" rel="external">http://nginx.org/download/nginx-1.9.0.tar.gz</a></li>
+<li>添加www用户和组<br> groupadd www<br> useradd -g www www</li>
+<li>创建网站根目录<br> mkdir -p     /var/www/root/<br> chmod -R 775 /var/www/root/  </li>
+<li>tar -zxvf nginx-1.9.0.tar.gz</li>
+<li>cd nginx-1.9.0</li>
+<li>./configure \<br>–user=www \<br>–group=www \<br>–prefix=/usr/local/nginx \<br>–with-http_ssl_module \<br>–with-openssl=/usr/local/openssl-1.0.2h \<br>–with-pcre=/usr/local/pcre-8.37 \<br>–with-zlib=/usr/local/zlib-1.2.8 \<br>–with-http_stub_status_module \<br>–with-threads</li>
+<li>make &amp;&amp; make install</li>
+<li>/usr/local/nginx/sbin/nginx -V</li>
+</ul>
+</li>
+</ol>
+<pre><code>- 修改配置文件  
+vim /usr/local/nginx/conf/nginx.conf
+</code></pre><h3 id="新建git用户添加sudo权限"><a href="#新建git用户添加sudo权限" class="headerlink" title="新建git用户添加sudo权限"></a>新建git用户添加sudo权限</h3><ul>
+<li>adduser git  </li>
+<li>chmod 740 /etc/sudoers  </li>
+<li>vim /etc/sudoers</li>
+</ul>
+<p>在vi编辑中找到如下内容：<br><figure class="highlight plain"><figcaption><span>Allow root to run any commands anywhere</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">root    ALL=(ALL)     ALL</div></pre></td></tr></table></figure></p>
+<p>在其下面添加一行：<br><figure class="highlight plain"><figcaption><span>ALL=(ALL)     ALL```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">保存并退出后 执行</div><div class="line"> - chmod 440 /etc/sudoers</div><div class="line"></div><div class="line">### 创建Git仓库，并配置ssh登陆</div><div class="line"></div><div class="line"> - su git</div><div class="line"> - cd ~</div><div class="line"> - mkdir .ssh &amp;&amp; cd .ssh</div><div class="line"> - touch authorized_keys</div><div class="line"> - vi authorized_keys//粘贴本机 id_rsa.pub文件中key</div><div class="line"> - cd ~ </div><div class="line"> - mkdir hexo.git &amp;&amp; cd hexo.git</div><div class="line"> - git init --bare</div><div class="line"></div><div class="line">----</div><div class="line">测试一下，如果在```git bash```中输入```ssh git@VPS的IP地址```,能够远程登录的话，则表示设置成功了。</div><div class="line"></div><div class="line">失败！！！</div><div class="line"></div><div class="line">----</div><div class="line"></div><div class="line"></div><div class="line">### root用户下，创建网站目录并赋予git对网站目录的所有权</div><div class="line"></div><div class="line"> - cd /var/www</div><div class="line"> - mkdir hexo</div><div class="line"> - chown git:git -R /var/www/hexo</div><div class="line"></div><div class="line"></div><div class="line">### 配置git hooks</div><div class="line"></div><div class="line"> - su git</div><div class="line"> - cd /home/git/hexo.git/hooks</div><div class="line"> - vim post-receive</div><div class="line"></div><div class="line">输入如下内容后保存退出，</div><div class="line">	</div><div class="line">	#!/bin/bash</div><div class="line">	GIT_REPO=/home/git/hexo.git #git仓库</div><div class="line">	TMP_GIT_CLONE=/tmp/hexo</div><div class="line">	PUBLIC_WWW=/var/www/hexo #网站目录</div><div class="line">	rm -rf $&#123;TMP_GIT_CLONE&#125;</div><div class="line">	git clone $GIT_REPO $TMP_GIT_CLONE</div><div class="line">	rm -rf $&#123;PUBLIC_WWW&#125;/*</div><div class="line">	cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</div><div class="line"></div><div class="line">然后赋予脚本的执行权限</div><div class="line"></div><div class="line"> - chmod +x post-receive</div><div class="line"></div><div class="line"></div><div class="line">### 配置Nginx</div><div class="line"></div><div class="line"> - vim /etc/nginx/conf.d/hexo.conf</div><div class="line"></div><div class="line">插入如下代码：</div></pre></td></tr></table></figure></p>
+<p>server {<br>    listen         80 ;<br>    root /var/www/hexo;//这里可以改成你的网站目录地址，我将网站放在/var/www/hexo<br>    server_name example.com www.example.com;//这里输入你的域名或IP地址<br>    access_log  /var/log/nginx/hexo_access.log;<br>    error_log   /var/log/nginx/hexo_error.log;<br>    location ~<em> ^.+.(ico|gif|jpg|jpeg|png)$ {<br>            root /var/www/hexo;<br>            access_log   off;<br>            expires      1d;<br>    }<br>    location ~</em> ^.+.(css|js|txt|xml|swf|wav)$ {<br>        root /var/www/hexo;<br>        access_log   off;<br>        expires      10m;<br>    }<br>    location / {<br>        root /var/www/hexo;//这里可以改成你的网站目录地址，我将网站放在/var/www/hexo<br>        if (-f $request_filename) {<br>            rewrite ^/(.*)$  /$1 break;<br>        }<br>    }<br>}<br>```</p>
+<p>重启Nginx</p>
+<ul>
+<li>service nginx restart</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/4480603d-VPS-building-Hexo/" data-id="cite4b4h7001e9wtvgcw1malc" class="article-share-link" data-share="baidu" data-title="将Hexo部署到vps上">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/4480603d-VPS-building-Hexo/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CentOS/">CentOS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/bbefa7a0-JavaEmpire-Functional-Programming-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          【转】Java 帝国之函数式编程（下）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/8fcf0e71-TCP-IP-ILLustrated-Volume-1-The-Protocols/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">TCP/IP详解 卷1：协议</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="4480603d-VPS-building-Hexo/" data-title="将Hexo部署到vps上" data-url="http://nibnait.com/4480603d-VPS-building-Hexo/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,796 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>计算机网络-基础 | 一只正在爬坡的Java狗</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="书单列表&amp;amp;参考资料： 
+
+《图解TCP/IP(第5版)》
+《计算机网络：自顶向下方法(原书第6版)》
+西安邮电大学-谢晓燕-计算机网络课堂ppt.rar（点击下载 16.1M）
+传送门：计算机网络的发展史&amp;amp;网络基础知识
+传送门：计算机网络-进阶
+传送门：差错检测的3种技术
+传送门：TCP/IP详解 卷1：协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络-基础">
+<meta property="og:url" content="http://nibnait.com/58316970-Computer-Networking-basis/index.html">
+<meta property="og:site_name" content="一只正在爬坡的Java狗">
+<meta property="og:description" content="书单列表&amp;amp;参考资料： 
+
+《图解TCP/IP(第5版)》
+《计算机网络：自顶向下方法(原书第6版)》
+西安邮电大学-谢晓燕-计算机网络课堂ppt.rar（点击下载 16.1M）
+传送门：计算机网络的发展史&amp;amp;网络基础知识
+传送门：计算机网络-进阶
+传送门：差错检测的3种技术
+传送门：TCP/IP详解 卷1：协议">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-1.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-2.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-3.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-4.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-5.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-6.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-7.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-8.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-10.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-11.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-12.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-13.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-14.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-15.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-16.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-17.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-19.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-20.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-21.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-23.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-24.png">
+<meta property="og:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-22.png">
+<meta property="og:updated_time" content="2016-06-16T00:44:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络-基础">
+<meta name="twitter:description" content="书单列表&amp;amp;参考资料： 
+
+《图解TCP/IP(第5版)》
+《计算机网络：自顶向下方法(原书第6版)》
+西安邮电大学-谢晓燕-计算机网络课堂ppt.rar（点击下载 16.1M）
+传送门：计算机网络的发展史&amp;amp;网络基础知识
+传送门：计算机网络-进阶
+传送门：差错检测的3种技术
+传送门：TCP/IP详解 卷1：协议">
+<meta name="twitter:image" content="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-1.png">
+<meta name="twitter:creator" content="@https://twitter.com/nibnait">
+  
+    <link rel="alternative" href="/atom.xml" title="一只正在爬坡的Java狗" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/pic/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+  
+</head>
+<body>
+<div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一只正在爬坡的Java狗</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">知之为知之</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/projects">Projects</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="nibnait.com">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-58316970-Computer-Networking-basis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/58316970-Computer-Networking-basis/" class="article-date">
+  <time datetime="2016-06-03T15:04:00.000Z" itemprop="datePublished">2016-06-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书笔记/">读书笔记</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      计算机网络-基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>书单列表&amp;参考资料： </p>
+<ul>
+<li><a href="https://book.douban.com/subject/24737674/" target="_blank" rel="external">《图解TCP/IP(第5版)》</a></li>
+<li><a href="https://book.douban.com/subject/26176870/" target="_blank" rel="external">《计算机网络：自顶向下方法(原书第6版)》</a></li>
+<li>西安邮电大学-谢晓燕-计算机网络课堂ppt.rar（<a href="http://7xr7ju.com1.z0.glb.clouddn.com/doc/%E8%A5%BF%E5%AE%89%E9%82%AE%E7%94%B5%E5%A4%A7%E5%AD%A6-%E8%B0%A2%E6%99%93%E7%87%95-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%AF%BE%E5%A0%82ppt.rar" target="_blank" rel="external">点击下载 16.1M</a>）</li>
+<li>传送门：<a href="http://nibnait.com/c500696f-Computer-Network-Infrastructure/">计算机网络的发展史&amp;网络基础知识</a></li>
+<li>传送门：<a href="http://nibnait.com/b3dcfa99-Computer-Networking-advanced/">计算机网络-进阶</a></li>
+<li>传送门：<a href="http://nibnait.com/d4c81fd3-error-detection-and-correction/">差错检测的3种技术</a></li>
+<li>传送门：<a href="http://nibnait.com/8fcf0e71-TCP-IP-ILLustrated-Volume-1-The-Protocols/">TCP/IP详解 卷1：协议</a></li>
+</ul>
+<a id="more"></a>
+<p>目录：</p>
+<ol>
+<li>数据链路层  <ul>
+<li>共享介质型网络</li>
+<li>非共享介质型网络</li>
+<li>以太网<ul>
+<li>VLAN</li>
+<li>PPP协议</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>网络层</p>
+<ul>
+<li>IPv4编址</li>
+<li>NAT技术</li>
+<li>IPv6与IPv4数据报格式对比</li>
+<li>IP报文的分片与重组</li>
+<li>IP协议相关技术<ul>
+<li>ARP</li>
+<li>RARP</li>
+<li>ICMP</li>
+<li>ICMPv6</li>
+<li>DHCP</li>
+</ul>
+</li>
+<li>路由选择算法<ul>
+<li>距离向量算法 - RIP、RIP2</li>
+<li>链路状态算法 - OSPF</li>
+<li>BGP - 路径向量型协议</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>传输层</p>
+<ul>
+<li>UDP - 用户数据报协议</li>
+<li>TCP - 传输控制协议</li>
+<li>其他传输层协议</li>
+</ul>
+</li>
+<li><p>应用层</p>
+<ul>
+<li>远程登录 – TELNET、SSH</li>
+<li>文件传输 – FTP</li>
+<li>电子邮件 – MIME、SMTP、POP、IMAP</li>
+<li>WWW – HTTP</li>
+<li>网络管理 – SNMP、MIB、RMON</li>
+</ul>
+</li>
+</ol>
+<h1 id="TCP-IP的诞生："><a href="#TCP-IP的诞生：" class="headerlink" title="TCP/IP的诞生："></a>TCP/IP的诞生：</h1><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-1.png" alt="《图解TCP/IP》 P53 表2.1"></p>
+<p>20世纪90年代，ISO展开了OSI这一国际标准协议的标准化进程。然而，OSI协议并没有得到普及，真正被广泛使用的是TCP/IP协议。究其原因，是因为<a href="http://nibnait.com/c09ed94b-TCP-IP-standardization-process/">TCP/IP的标准化过程</a>是一个极其<strong>注重实用性</strong>的一个流程。</p>
+<h1 id="TCP-IP与OSI参考模型"><a href="#TCP-IP与OSI参考模型" class="headerlink" title="TCP/IP与OSI参考模型"></a>TCP/IP与OSI参考模型</h1><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-2.png" alt="《图解TCP/IP》 P64 图2.8"></p>
+<h1 id="1-数据链路层"><a href="#1-数据链路层" class="headerlink" title="1. 数据链路层"></a>1. 数据链路层</h1><p>在LAN内，校验并转发 数据帧(根据MAC地址▼)</p>
+<h3 id="共享介质型网络"><a href="#共享介质型网络" class="headerlink" title="共享介质型网络"></a>共享介质型网络</h3><blockquote>
+<p>   多个设备共享同一个载波信道进行发送和接收数据帧，半双工通信▼。</p>
+</blockquote>
+<ul>
+<li><p>争用方式：CSMA/CD▼</p>
+<ul>
+<li>发前先听</li>
+<li>边发边听</li>
+<li>冲突即停</li>
+<li>延时重发（指数退避等待）</li>
+</ul>
+</li>
+<li><p>令牌传递方式：</p>
+<p>  提高网络性能的两种方法：令牌释放(不等待接收方的数据到达确认就将令牌发送给下一站)、令牌追加(多个令牌同时循环)</p>
+</li>
+</ul>
+<h3 id="非共享介质型网络"><a href="#非共享介质型网络" class="headerlink" title="非共享介质型网络"></a>非共享介质型网络</h3><blockquote>
+<p>   不共享介质。网络中的每个站直连交换机，由交换机负责转发数据帧。由于发送端和接收端并不共享通信介质，所以这种通信方式是全双工的。</p>
+</blockquote>
+<ul>
+<li><p>以太网交换机(网桥)：<strong>转发表</strong>自学原理：</p>
+<ul>
+<li>学习源地址</li>
+<li>转发同网帧</li>
+<li>丢弃异网帧</li>
+<li>广播未知帧</li>
+</ul>
+</li>
+<li><p>环路检测技术：</p>
+<ul>
+<li>生成树协议(STP▼)：通过检查网络的结构 以某一个网桥为构造<strong>树根</strong>，并对每个端口配置<strong>权重</strong>，来指定优先使用哪些端口以及发生问题时该使用哪些端口。</li>
+</ul>
+</li>
+</ul>
+<h2 id="以太网——有线局域网技术"><a href="#以太网——有线局域网技术" class="headerlink" title="以太网——有线局域网技术"></a>以太网——有线局域网技术</h2><p>历史：共享介质型网络–&gt;非共享介质型网络</p>
+<ul>
+<li>以太网帧格式：</li>
+</ul>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-3.png" alt="Ethernet V2"></p>
+<ul>
+<li>VLAN(virtual LAN，虚拟局域网)</li>
+</ul>
+<blockquote>
+<p>在链路层交换机(网桥)上，使用软件将一些端口逻辑地划分成的一个个网段。</p>
+</blockquote>
+<ul>
+<li>可以跨越不同子网、不同类型网络(以太网、FDDI▼、ATM▼等)从而<strong>简化网络管理，减少设备投资</strong>。</li>
+<li>交换机根据VLAN ID， 可以过滤多余的包，从而达到<strong>控制流量 减少了网络负载</strong> 并 <strong>提高了网络的安全性</strong>。 </li>
+</ul>
+<h3 id="PPP-Point-to-Point-Protocol"><a href="#PPP-Point-to-Point-Protocol" class="headerlink" title="PPP(Point-to-Point Protocol):"></a>PPP(Point-to-Point Protocol):</h3><blockquote>
+<p>   拨号上网时，一个将IP数据报<strong>封装</strong>到串行链路的<strong>方法</strong>。</p>
+</blockquote>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-4.png" alt="Ethernet V2"></p>
+<p>主要功能：</p>
+<pre><code>-  LCP(链路控制协议)：负责建立、(加密拨号登陆)配置和测试数据链路连接
+-  NCP(网络控制协议)：负责设置IP地址(IPCP)、连接上一层
+</code></pre><h1 id="2-网络层"><a href="#2-网络层" class="headerlink" title="2. 网络层"></a>2. 网络层</h1><h2 id="IP协议：尽力而为-面向无连接的"><a href="#IP协议：尽力而为-面向无连接的" class="headerlink" title="IP协议：尽力而为(面向无连接的)"></a>IP协议：尽力而为(面向无连接的)</h2><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-5.png" alt="IPv4地址的定义"></p>
+<p>一些特殊的IP地址：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">网络号</th>
+<th style="text-align:center">主机号</th>
+<th>10进制表示</th>
+<th style="text-align:center">源地址</th>
+<th style="text-align:center">目的地址</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td>0.0.0.0</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+<td>本网络上的本主机</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">host-id</td>
+<td></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+<td>本网络上的某台host-id任播</td>
+</tr>
+<tr>
+<td style="text-align:center">全1</td>
+<td style="text-align:center">全1</td>
+<td>255.255.255.255</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+<td>本网络上的广播,不能被路由器转发</td>
+</tr>
+<tr>
+<td style="text-align:center">net-id</td>
+<td style="text-align:center">全1</td>
+<td></td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+<td>指定net-id上的所有主机广播</td>
+</tr>
+<tr>
+<td style="text-align:center">127</td>
+<td style="text-align:center">任何数<br>(但不能都是0或1)</td>
+<td>127.×××.×××.×××<br>（默认：127.0.0.1=localhost）</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td>本地回环测试地址</td>
+</tr>
+</tbody>
+</table>
+<h2 id="NAT▼技术：极大的缓解了IPv4地址不够用的囧境"><a href="#NAT▼技术：极大的缓解了IPv4地址不够用的囧境" class="headerlink" title="NAT▼技术：极大的缓解了IPv4地址不够用的囧境"></a>NAT▼技术：极大的缓解了IPv4地址不够用的囧境</h2><blockquote>
+<p>在本地网络中使用私有地址，在连接互联网时转而使用全局IP地址的技术。</p>
+</blockquote>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-6.png" alt=""></p>
+<ul>
+<li><p>潜在问题：①无法从NAT外部向内部服务器建立连接；②转换表的生成与转换操作都会产生一定的开销。</p>
+</li>
+<li><p>解决地址短缺的最佳途径还是：普及IPv6。</p>
+</li>
+</ul>
+<h2 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h2><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-7.png" alt=""></p>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-ipv4-ipv6.png" target="_blank" rel="external">IPv4与IPv6数据报格式详解.png</a></p>
+<h2 id="IP报文的分片与重组"><a href="#IP报文的分片与重组" class="headerlink" title="IP报文的分片与重组"></a>IP报文的分片与重组</h2><blockquote>
+<ul>
+<li>IPv4:在路由器上分片，在接收端主机上重组。</li>
+<li>IPv6:在发送端主机上分配，接收端主机重组。最小的MTU==1280字节</li>
+</ul>
+</blockquote>
+<ol>
+<li>通过“路径MTU发现▼”，以确定分片时最大的MTU的大小。<ul>
+<li>主要利用一个ICMP不可达消息 将数据链路上MTU的值返回给发送机</li>
+</ul>
+</li>
+</ol>
+<h2 id="ARP▼"><a href="#ARP▼" class="headerlink" title="ARP▼"></a>ARP▼</h2><blockquote>
+<p>   发送端主机根据IP地址，广播寻找其对应的MAC地址，（只适用于IPv4，IPv6中则可以用ICMPv6替代ARP发送邻居探索消息）实现链路内的IP通信。</p>
+</blockquote>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-8.png" alt="ARP工作机制"></p>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-9.png" target="_blank" rel="external">ARP包格式.png</a></p>
+<ul>
+<li>ARP缓存表<br> 通常发送端和接受端会把自己接收到的 带有IP地址和MAC地址的ARP响应包/ARP请求包中的信息缓存20分钟。以防止ARP包在网络中被大量广播，造成网络拥塞。</li>
+<li>tips：虽然IP地址直到到达目标主机时都没有发生变化，但是数据链路的目标地址(MAC地址)却根据每个链路的不同而发生着变化。</li>
+<li>MAC地址和IP地址缺一不可<ul>
+<li>在以太网上发送IP包时，“下次要经过哪个路由器发送数据报”中的“下一个路由器”就是其相应的MAC地址。</li>
+<li>而如果没有IP地址，各个主机通信全靠广播MAC地址，那对于网桥来说将是一场灾难。</li>
+</ul>
+</li>
+</ul>
+<h2 id="RARP"><a href="#RARP" class="headerlink" title="RARP"></a>RARP</h2><blockquote>
+<p>   将ARP反过来，从MAC地址定位IP地址。用于将打印机服务器等小型嵌入式设备接入到网络时。</p>
+</blockquote>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-10.png" alt="RARP工作机制"></p>
+<h2 id="辅助IP的ICMP▼"><a href="#辅助IP的ICMP▼" class="headerlink" title="辅助IP的ICMP▼"></a>辅助IP的ICMP▼</h2><blockquote>
+<p>   用于IP通信过程中，确认网络是否正常工作，以及遇到异常时进行问题的诊断。</p>
+</blockquote>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-11.png" alt=""></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-12.png" alt=""></p>
+<p>附：<a href="http://nibnait.com/b3dcfa99-Computer-Networking-advanced/">《计算机网络-进阶》–ICMP报文消息类型详解</a></p>
+<h2 id="ICMPv6"><a href="#ICMPv6" class="headerlink" title="ICMPv6"></a>ICMPv6</h2><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-13.png" alt=""></p>
+<p>附：<a href="http://nibnait.com/b3dcfa99-Computer-Networking-advanced/">《计算机网络-进阶》–ICMPv6的邻居探索</a></p>
+<h2 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h2><ul>
+<li><p>在使用DHCP之前，需先将DHCP所要分配的IP地址池、相应的子网掩码，默认路由控制信息，DNS服务器地址设置到服务器上。</p>
+<p> <img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-14.png" alt="DHCP的工作原理"></p>
+</li>
+<li><p>DHCP中继代理</p>
+<p> 使用DHCP中继代理之后，对不同网段的IP地址的分配也可以由一个DHCP服务器统一进行管理和维护。</p>
+<p> <img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-15.png" alt=""></p>
+</li>
+</ul>
+<h2 id="路由选择算法"><a href="#路由选择算法" class="headerlink" title="路由选择算法"></a>路由选择算法</h2><h3 id="距离向量算法-Distance-Vector"><a href="#距离向量算法-Distance-Vector" class="headerlink" title="距离向量算法(Distance-Vector)"></a>距离向量算法(Distance-Vector)</h3><blockquote>
+<p>   根据网络中的距离(跳数)和方向两种信息生成路由控制表。</p>
+</blockquote>
+<ul>
+<li><p>RIP▼</p>
+<ul>
+<li>选择经过路由器个数最少的路径</li>
+<li>每隔30秒与其他相邻的路由器交换自己的路由表</li>
+<li>直接相连的网络距离为0。距离的最大值为16，防止发生“无限计数”问题。</li>
+<li>缺点：<ul>
+<li>网络的个数越多，每次所要交换的路由控制信息就越大。</li>
+<li>在网络比较稳定时，还要定期交换信息，浪费贷款。</li>
+<li>由于每个路由器掌握的信息都不同，其正确性很难保证。</li>
+<li>无法实现可变长度子网构造的网络路由控制（路由器未交换子网掩码）。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>RIP2<br> 与RIP第一版的工作机制基本相同，增加了一些新的特点：<br> <img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-16.png" alt="">        </p>
+</li>
+</ul>
+<h3 id="链路状态算法-Link-State"><a href="#链路状态算法-Link-State" class="headerlink" title="链路状态算法(Link-State)"></a>链路状态算法(Link-State)</h3><blockquote>
+<p>   在了解网络整个链接状态的基础上，所有路由器都持有相同的路由控制表。</p>
+</blockquote>
+<ul>
+<li><p>OSPF▼</p>
+<ul>
+<li>选择总的代价较小的路径。</li>
+<li>允许多条费用相同的路径(而RIP仅一条路径)</li>
+<li>对每条链路，对不同的TOS(服务类型)，设置多种费用测度</li>
+<li><p>在大规模网络中，用层次的OSPF</p>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-18.png" target="_blank" rel="external">OSPF的工作机制.png</a></p>
+</li>
+<li><p>层次OSPF<br><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-17.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="BGP▼-路径向量型协议"><a href="#BGP▼-路径向量型协议" class="headerlink" title="BGP▼ - 路径向量型协议"></a>BGP▼ - 路径向量型协议</h3><blockquote>
+<p>   边界网关协议是连接不同组织机构(不同自治系统)的一种协议。主要用于ISP之间的相互连接。</p>
+</blockquote>
+<ul>
+<li>根据所要经过的<strong>AS路径信息访问列表</strong>▼进行路由控制。</li>
+<li>AS路径信息访问列表(AS Path List)：包含转发方向、距离以及途径所有AS的编号。</li>
+</ul>
+<h1 id="3-传输层"><a href="#3-传输层" class="headerlink" title="3. 传输层"></a>3. 传输层</h1><blockquote>
+<p>   网络层的IP协议相当于邮递员，把IP数据包送到指定IP的目标主机上，<br>   传输层的TCP/UDP则负责 根据包裹信息（应用程序、端口号），判断信息的最终接收人（哪一个应用程序）。</p>
+</blockquote>
+<h2 id="UDP——用户数据报协议"><a href="#UDP——用户数据报协议" class="headerlink" title="UDP——用户数据报协议"></a>UDP——用户数据报协议</h2><blockquote>
+<p>  不提供复杂的控制机制，利用IP提供面向无连接的通信服务。并且它是将应用程序发来的数据在收到的那一刻，立刻按照原样发送到网上的一种机制。 </p>
+</blockquote>
+<p>即使出现网络拥堵，UDP也无法进行流量控制等避免网络拥堵的行为。此外，传输途中即使出现丢包，UDP也不负责重发。甚至当出现包的到达顺序乱掉时也没有纠正的功能。如果需要这些细节控制，那么不得不交由采用UDP的应用程序去处理。UDP有点类似于用户说什么听什么的机制，但是需要用户充分考虑好上层协议类型并制作相应的应用程序。因此，也可以说，UDP按照“制作程序的那些用户的指示行事”。</p>
+<p>由于UDP面向无连接，它可以随时发送数据。再加上UDP本身处理既简单又高效，因此经常用于以下几个方面：</p>
+<ul>
+<li>包总量少的通信（DNS、SNMP等）</li>
+<li>视频、音频等多媒体通信（即时通信）</li>
+<li>限定于LAN等特定网络中的应用通信</li>
+<li>广播通信（广播、多播）</li>
+</ul>
+<p>首部格式：  </p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-19.png" alt="UDP数据报格式"></p>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-UDP.png" target="_blank" rel="external">UDP数据报首部“校验和”字段详解.png</a></p>
+<h2 id="TCP——传输控制协议"><a href="#TCP——传输控制协议" class="headerlink" title="TCP——传输控制协议"></a>TCP——传输控制协议</h2><p>目的：通过IP数据报实现可靠性传输</p>
+<p>特点：</p>
+<ul>
+<li>丢包时的<strong>重发控制</strong></li>
+<li>对次序乱掉的分包进行<strong>顺序控制</strong></li>
+<li><strong>面向有连接的协议</strong>，只有在确认对端存在时才会发送数据，从而可以<strong>控制通信流量</strong>的浪费</li>
+<li>使用序列号和确认应答号实现顺序控制、窗口控制与重发控制。</li>
+<li>使用窗口大小来实现对TCP的<strong>流</strong>量大小的<strong>控制</strong> 和 <strong>拥塞控制</strong></li>
+</ul>
+<p>首部格式：  </p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-20.png" alt="TCP数据报格式"></p>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-TCP.png" target="_blank" rel="external">TCP数据报首部格式各字段详解.png</a></p>
+<h3 id="TCP连接的建立与终止："><a href="#TCP连接的建立与终止：" class="headerlink" title="TCP连接的建立与终止："></a>TCP连接的建立与终止：</h3><p>(传说中的三次握手与四次挥手)  </p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-21.png" alt=""></p>
+<ol>
+<li>在数据通信之前，主机A通过TCP首部发送一个SYN包作为建立连接的请求（ACK=0,SYN=1，声明一个起始序号seq=x）等待确认应答</li>
+<li>主机B收到A要建立连接的请求，返回一个允许连接的SYNACK报文段（ACK=1,SYN=1，主机B的起始序号seq=y，确认应答号ack=x+1）</li>
+<li>为防止“已失效的连接请求报文段▼”突然又传回B，主机A再进行一次确认（ACK=1,SYN=0，主机A的起始序列号seq=x+1，确认应答号ack=y+1）</li>
+<li>数据传输结束之后，主机A可以发送一个TCP首部（FIN=1，主机A的起始序列号seq=u），请求断开连接。</li>
+<li>主机B收到“A不再发送数据的消息”后，返回一个确认报文（ACK=1,seq=v，ack=u+1）<br>A收到B的确认后，进入等待状态，等待B请求释放连接。</li>
+<li>B数据发送完成之后，向A请求断开连接（FIN=1,ACK=1,seq=w，ack=u+1）  </li>
+<li><p>A收到B的断开请求后，回复一个确认信息，并进入TIME_WAIT状态▼，等待2MSL时间。</p>
+<ul>
+<li>虽然三次握手方式管理TCP连接可以更好地避免无连接，但这种协议为DOS攻击▼（更确切的说是SYN洪泛攻击▼）提供了可乘之机。</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用序列号和确认应答号实现顺序控制、窗口控制与重发控制"><a href="#使用序列号和确认应答号实现顺序控制、窗口控制与重发控制" class="headerlink" title="使用序列号和确认应答号实现顺序控制、窗口控制与重发控制"></a>使用序列号和确认应答号实现顺序控制、窗口控制与重发控制</h3><p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-23.png" alt="确认应答未能返回"></p>
+<p><img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-24.png" alt="数据报文未能送达"></p>
+<p>##其他传输层协议</p>
+<ul>
+<li>UDP-Lite（Lightweight User Datagram Protocol，轻量级用户数据报协议）</li>
+<li>SCTP（Stream Control Transmission Protocol，流控制传输协议）</li>
+<li>DCCP（Datagram Congestion Control Protocol，数据报拥塞控制协议）</li>
+</ul>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-25.png" target="_blank" rel="external">已经步入实用阶段的几个传输层协议详解.png</a></p>
+<h1 id="4-应用层"><a href="#4-应用层" class="headerlink" title="4. 应用层"></a>4. 应用层</h1><p>。。。写不动了</p>
+<p>附：<a href="http://7xr7ju.com1.z0.glb.clouddn.com/doc/58316970-%E8%AE%A1%E7%AE%97%E9%A2%98.pptx" target="_blank" rel="external">几道常考的计算题.pptx</a></p>
+<hr>
+<p>本文中提到的一些专有名词：</p>
+<ul>
+<li>MAC地址(Media Access Control Address)：介质访问控制地址。系统在网络上的唯一硬件编号，每个网卡都需要有一个唯一的MAC地址。</li>
+<li>CSMA/CD(Carrier Sense Mutiple Access/Collision Detection)：具有碰撞检测的载波侦听多路访问</li>
+<li>半双工：只发送或只接受的通信方式。比如：无线电收发器，若两端同时说话，是听不见对方说的话的。</li>
+<li>全双工：发送数据的同时也可以接收数据。比如：打电话。</li>
+<li>STP：Spanning Tree Protocol</li>
+<li>SFD：Start Frame Delimiter</li>
+<li>FDDI(Fiber Distribute Data Interface)：<a href="http://baike.baidu.com/view/876931.htm" target="_blank" rel="external">分布式光纤数据接口。</a></li>
+<li>ATM(Asynchronous Transfer Mode)：一种以信元为单位的异步传输模式。</li>
+<li>网络收敛：网络拥堵时，路由器或交换机发生丢包的现象。</li>
+<li>PPPoE(PPP over Ethernet)：利用PPP的验证功能使各家ISP▼有效地管理终端用户的使用，实现按时计费。</li>
+<li>ISP:Internet Service Provider </li>
+<li>NAT：Network Address Translator</li>
+<li>Path MTU Discovery：发现路径中存在的所有数据链路中最小的MTU▼</li>
+<li>MTU：Maximum Transmission Unit。参见<a href="http://nibnait.com/b3dcfa99-Computer-Networking-advanced/">《计算机网络-进阶》–路径MTU发现</a></li>
+<li>ARP(Address Resolution Protocol)：地址解析协议</li>
+<li>RARP：Reverse Address Resolution Protocol</li>
+<li>ICMP：Internet Control Managemet Protocol</li>
+<li>DHCP：Dynamic Host Configuration Protocol </li>
+<li>RIP：Routing Information Protocol</li>
+<li>OSPF：Open Shortest Path First</li>
+<li>BGP(Border Gateway Protocol)：边界网关协议</li>
+<li>已失效的连接请求报文段：<br> <img src="http://7xr7ju.com1.z0.glb.clouddn.com/image/58316970-22.png" alt=""></li>
+<li>DOS攻击：deny of service</li>
+<li>SYN洪泛攻击:攻击者发送大量的TCP SYN报文段，而有意不进行第三次握手的步骤，直至服务器消耗完为第一次握手连接保留的有限资源。</li>
+<li>TIME_WAIT状态： 在TIME_WAIT状态中，如果TCP client端最后一次发送的ACK丢失了，它将重新发送。TIME_WAIT状态中所需要的时间是依赖于实现方法的。典型的值为30秒、1分钟和2分钟。等待之后连接正式关闭，并且所有的资源(包括端口号)都被释放。</li>
+<li>2MSL(Maximum Segment Lifetime,最大报文生存时间)：虽然按道理，四个报文都发送完毕，我们可以直接进入CLOSE状态了，但是我们必须假想网络是不可靠的，有可能最后一个ACK丢失。所以TIME_WAIT状态就是用来重发可能丢失的ACK报文。</li>
+</ul>
+<hr>
+<p>本文为原创文章，包含脚本行为，会经常更新知识点以及修正一些错误，因此转载请保留原出处，方便溯源，避免陈旧错误知识的误导，同时有更好的阅读体验。<br>本文地址：<a href="http://nibnait.com/58316970-Computer-Networking-basis/">http://nibnait.com/58316970-Computer-Networking-basis/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://nibnait.com/58316970-Computer-Networking-basis/" data-id="cite4b4i2001t9wtvrqhsx55d" class="article-share-link" data-share="baidu" data-title="计算机网络-基础">分享到</a>
+      
+
+      
+        <a href="http://nibnait.com/58316970-Computer-Networking-basis/#ds-thread" class="article-comment-link">评论</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/c500696f-Computer-Network-Infrastructure/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          聊聊计算机网络的发展史
+        
+      </div>
+    </a>
+  
+  
+    <a href="/c9e96cff-to-summarize-these-games-interview/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">错过春招内推的我</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="ds-thread" class="ds-thread" data-thread-key="58316970-Computer-Networking-basis/" data-title="计算机网络-基础" data-url="http://nibnait.com/58316970-Computer-Networking-basis/"></div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/刘欣-码农翻身/">刘欣-码农翻身</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/学习笔记/">学习笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具配置笔记/">工具配置笔记</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎折腾/">瞎折腾</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/瞎推荐/">瞎推荐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随便聊聊/">随便聊聊</a><span class="category-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/">C</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CentOS/">CentOS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GeekTools/">GeekTools</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IDEA/">IDEA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JDK源码/">JDK源码</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/">JVM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java番外篇/">Java番外篇</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lucene/">Lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyEclipse/">MyEclipse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSH/">SSH</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Shadowsocks/">Shadowsocks</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sublime/">Sublime</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tomcat/">Tomcat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rss/">rss</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/刷机/">刷机</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/多线程/">多线程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据结构与算法/">数据结构与算法</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/转载/">转载</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面经/">面经</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/CentOS/" style="font-size: 15px;">CentOS</a> <a href="/tags/GeekTools/" style="font-size: 13.75px;">GeekTools</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/IDEA/" style="font-size: 10px;">IDEA</a> <a href="/tags/JDK源码/" style="font-size: 10px;">JDK源码</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 16.25px;">Java</a> <a href="/tags/Java番外篇/" style="font-size: 17.5px;">Java番外篇</a> <a href="/tags/Linux/" style="font-size: 16.25px;">Linux</a> <a href="/tags/Lucene/" style="font-size: 10px;">Lucene</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MyEclipse/" style="font-size: 10px;">MyEclipse</a> <a href="/tags/MySQL/" style="font-size: 12.5px;">MySQL</a> <a href="/tags/SSH/" style="font-size: 10px;">SSH</a> <a href="/tags/Shadowsocks/" style="font-size: 10px;">Shadowsocks</a> <a href="/tags/Spring/" style="font-size: 11.25px;">Spring</a> <a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Vim/" style="font-size: 10px;">Vim</a> <a href="/tags/git/" style="font-size: 11.25px;">git</a> <a href="/tags/rss/" style="font-size: 10px;">rss</a> <a href="/tags/刷机/" style="font-size: 12.5px;">刷机</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/数据结构与算法/" style="font-size: 12.5px;">数据结构与算法</a> <a href="/tags/计算机网络/" style="font-size: 18.75px;">计算机网络</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/转载/" style="font-size: 20px;">转载</a> <a href="/tags/面经/" style="font-size: 10px;">面经</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">20</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/Manacher/">求最长回文子串的Manacher算法</a>
+          </li>
+        
+          <li>
+            <a href="/KMP/">字符串匹配的KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2cde884b-SqlStatements-eliminate-illiteracy/">经典数据库SQL语句编写练习题——SQL语句扫盲</a>
+          </li>
+        
+          <li>
+            <a href="/9cc2e03e-Nexus6-Disassemble-replace-the-battery/">Nexus6拆机换电池</a>
+          </li>
+        
+          <li>
+            <a href="/53e45808-K2-router-Brush/">路由器刷机</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="http://maybeiwill.me/" target="_blank">MAYBEIWILL</a>
+          </li>
+        
+          <li>
+            <a href="http://www.woaitqs.cc/" target="_blank">Coding and Living</a>
+          </li>
+        
+          <li>
+            <a href="http://javabin.cn/" target="_blank">舍友绿盟强</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/wwh578867817" target="_blank">王伟豪</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/lotluck" target="_blank">杜帅</a>
+          </li>
+        
+          <li>
+            <a href="http://blog.csdn.net/panda_m" target="_blank">潘铭</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 NibNait<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/projects" class="mobile-nav-link">Projects</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+<!-- 多说公共js代码 start -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"nibnait"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共js代码 end -->
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+                processEscapes: true
+                    
+}
+  
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+                  
+}
+    
+        });
+</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Queue(function() {
+            var all = MathJax.Hub.getAllJax(), i;
+            for(i=0; i < all.length; i += 1) {
+                            all[i].SourceElement().parentNode.className += ' has-jax';
+                                    
+            }
+                
+        });
+</script>
+
+<script type="text/javascript" src="http://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<script src="/js/script.js"></script>
+
+</div>
+</body>
+</html>
